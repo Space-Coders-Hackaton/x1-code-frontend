@@ -18,7 +18,9 @@ export const theme = extendTheme({
       700: '#5F5C6B',
       800: '#4E4B59',
       900: '#33303E'
-    }
+    },
+    white: '#F4EDE8',
+    black: '#121214'
   },
   fonts: {
     heading: 'Montserrat',
@@ -27,7 +29,7 @@ export const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: 'gray.900',
+        bg: 'black',
         color: 'white'
       }
     }
