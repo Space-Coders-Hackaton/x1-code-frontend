@@ -17,7 +17,8 @@ export const theme = extendTheme({
       600: '#7A7786',
       700: '#5F5C6B',
       800: '#4E4B59',
-      900: '#33303E'
+      900: '#33303E',
+      950: '#1C1C1F'
     },
     white: '#F4EDE8',
     black: '#121214'
@@ -71,6 +72,16 @@ export const theme = extendTheme({
     },
     Text: {
       variants: {
+        24: {
+          fontWeight: 700,
+          fontSize: '24px',
+          lineHeight: '130%'
+        },
+        20: {
+          fontWeight: 700,
+          fontSize: '20px',
+          lineHeight: '150%'
+        },
         18: {
           fontWeight: 400,
           fontSize: '18px',
