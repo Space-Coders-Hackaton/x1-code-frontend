@@ -61,7 +61,7 @@ export default function Home() {
         <VStack
           display="flex"
           spacing={4}
-          pb={10}
+          pb={20}
           direction="column"
           alignItems="center"
         >
@@ -73,7 +73,7 @@ export default function Home() {
           justifyContent="center"
           height={44}
           w="full"
-          pt={12}
+          pt={20}
           bgColor="gray.950"
           px={72}
           py={6}
