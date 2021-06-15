@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaReact, FaNodeJs, FaLightbulb, FaArrowRight } from 'react-icons/fa'
-// import * as eva from 'eva-icons'
+import * as eva from 'eva-icons'
 
 import {
   Box,
   Button,
-  Center,
   Divider,
   Flex,
   Heading,
@@ -21,6 +20,10 @@ import {
 import Mouse from '../../public/mouse.svg'
 
 export default function Home() {
+  useEffect(() => {
+    eva.replace()
+  }, [])
+
   return (
     <>
       <Head>
@@ -131,7 +134,12 @@ export default function Home() {
             </VStack>
             <VStack spacing={5}>
               <Box bgColor="gray.600" p={4} borderRadius={14}>
-                <Icon as={FaLightbulb} w={16} h={16} color="gray.700" />
+                <i
+                  data-eva="bulb"
+                  data-eva-height="5rem"
+                  data-eva-width="5rem"
+                  data-eva-fill="#5F5C6B"
+                ></i>
               </Box>
               <Heading variant="24">Em breve...</Heading>
               <Text variant="16" textAlign="center">
@@ -140,8 +148,12 @@ export default function Home() {
             </VStack>
             <VStack spacing={5}>
               <Box bgColor="gray.600" p={4} borderRadius={14}>
-                <Icon as={FaLightbulb} w={16} h={16} color="gray.700" />
-                <i data-eva="github"></i>
+                <i
+                  data-eva="bulb"
+                  data-eva-height="5rem"
+                  data-eva-width="5rem"
+                  data-eva-fill="#5F5C6B"
+                ></i>
               </Box>
               <Heading variant="24">Em breve...</Heading>
               <Text variant="16" textAlign="center">
@@ -167,7 +179,9 @@ export default function Home() {
               size="lg"
               _hover={{ bgColor: 'pink.500' }}
               maxW="16.125rem"
-              rightIcon={<FaArrowRight />}
+              rightIcon={
+                <i data-eva="arrow-forward-outline" data-eva-fill="#fff "></i>
+              }
               fontWeight={700}
               fontSize="20px"
               lineHeight="150%"
