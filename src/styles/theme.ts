@@ -71,6 +71,16 @@ export const theme = extendTheme({
     },
     Text: {
       variants: {
+        24: {
+          fontWeight: 700,
+          fontSize: '24px',
+          lineHeight: '130%'
+        },
+        20: {
+          fontWeight: 700,
+          fontSize: '20px',
+          lineHeight: '150%'
+        },
         18: {
           fontWeight: 400,
           fontSize: '18px',
