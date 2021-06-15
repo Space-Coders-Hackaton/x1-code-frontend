@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, { useEffect } from 'react'
-import { FaReact, FaNodeJs, FaLightbulb, FaArrowRight } from 'react-icons/fa'
+import { FaReact, FaNodeJs } from 'react-icons/fa'
 import * as eva from 'eva-icons'
 
 import {
@@ -27,49 +27,52 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Homepage</title>
+        <title>X1Code - Home</title>
       </Head>
       <VStack spacing={0} as="main">
-        <HStack
-          as="section"
-          backgroundImage="gradient.svg"
-          bgPosition="right"
-          bgRepeat="no-repeat"
-          px={24}
-          pt={36}
-          spacing={32}
-          display="flex"
-          justifyContent="space-between"
-        >
-          <VStack as="section" spacing={8} display="flex" alignItems="left">
-            <Heading variant="48">Desafios e competições!</Heading>
-            <Text variant="18">
-              Desafie-se concluindo diversos desafios dos mais diversos níveis e
-              tecnologias. Compita com outros usuários com o nosso sistema de
-              ranking e pontos!
-            </Text>
-            <Button
-              bgColor="purple.500"
-              size="lg"
-              _hover={{ bgColor: 'purple.700' }}
-              maxW="9.1875rem"
-            >
-              <Heading variant="18">Desafios</Heading>
-            </Button>
+        <VStack minH="90vh">
+          <HStack
+            as="section"
+            backgroundImage="gradient.svg"
+            bgPosition="right"
+            bgRepeat="no-repeat"
+            px={24}
+            pt={36}
+            spacing={32}
+            display="flex"
+            justifyContent="space-between"
+          >
+            <VStack as="section" spacing={8} display="flex" alignItems="left">
+              <Heading variant="48">Desafios e competições!</Heading>
+              <Text variant="18">
+                Desafie-se concluindo diversos desafios dos mais diversos níveis
+                e tecnologias. Compita com outros usuários com o nosso sistema
+                de ranking e pontos!
+              </Text>
+              <Button
+                bgColor="purple.500"
+                size="lg"
+                _hover={{ bgColor: 'purple.700' }}
+                maxW="9.1875rem"
+              >
+                <Heading variant="18">Desafios</Heading>
+              </Button>
+            </VStack>
+            <Flex as="section">
+              <Image src="code.svg" minW="615px" />
+            </Flex>
+          </HStack>
+          <VStack
+            display="flex"
+            spacing={4}
+            pt={20}
+            pb={20}
+            direction="column"
+            alignItems="center"
+          >
+            <Mouse />
+            <Text variant="14">Deslize para ver mais</Text>
           </VStack>
-          <Flex as="section">
-            <Image src="code.svg" minW="615px" />
-          </Flex>
-        </HStack>
-        <VStack
-          display="flex"
-          spacing={4}
-          pb={20}
-          direction="column"
-          alignItems="center"
-        >
-          <Mouse />
-          <Text variant="14">Deslize para ver mais</Text>
         </VStack>
         <HStack
           display="flex"
@@ -132,7 +135,7 @@ export default function Home() {
                 Desafios sobre backend com a ferramenta NodeJS!
               </Text>
             </VStack>
-            <VStack spacing={5}>
+            <VStack spacing={5} opacity="60%">
               <Box bgColor="gray.600" p={4} borderRadius={14}>
                 <i
                   data-eva="bulb"
@@ -146,7 +149,7 @@ export default function Home() {
                 Em breve mais tecnologias com mais desafios para todos os devs!
               </Text>
             </VStack>
-            <VStack spacing={5}>
+            <VStack spacing={5} opacity="60%">
               <Box bgColor="gray.600" p={4} borderRadius={14}>
                 <i
                   data-eva="bulb"
