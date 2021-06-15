@@ -3,6 +3,8 @@ import React from 'react'
 
 import {
   Button,
+  Center,
+  Divider,
   Flex,
   Heading,
   HStack,
@@ -19,9 +21,9 @@ export default function Home() {
       <Head>
         <title>Homepage</title>
       </Head>
-      <VStack spacing={0}>
+      <VStack spacing={0} as="main">
         <HStack
-          as="main"
+          as="section"
           backgroundImage="gradient.svg"
           bgPosition="right"
           bgRepeat="no-repeat"
@@ -56,6 +58,46 @@ export default function Home() {
           <Mouse />
           <Text variant="14">Deslize para ver mais</Text>
         </VStack>
+        <HStack
+          display="flex"
+          justifyContent="center"
+          height={44}
+          w="full"
+          pt={12}
+          bgColor="gray.950"
+          px={72}
+          py={6}
+          color="white"
+          spacing={10}
+        >
+          <VStack spacing={2}>
+            <Heading variant="72">70</Heading>
+            <Heading variant="20" as="span">
+              DESAFIOS
+            </Heading>
+          </VStack>
+          <Divider orientation="vertical" />
+          <VStack spacing={2}>
+            <Heading variant="72">+100</Heading>
+            <Heading variant="20" as="span">
+              USUÁRIOS
+            </Heading>
+          </VStack>
+          <Divider orientation="vertical" />
+          <VStack spacing={2}>
+            <Heading variant="72">2</Heading>
+            <Heading variant="20" as="span">
+              TECNOLOGIAS
+            </Heading>
+          </VStack>
+          <Divider orientation="vertical" />
+          <VStack spacing={2}>
+            <Heading variant="72">+1000</Heading>
+            <Heading variant="20" as="span">
+              ENVIADOS
+            </Heading>
+          </VStack>
+        </HStack>
       </VStack>
     </>
   )
