@@ -1,14 +1,19 @@
 import Head from 'next/head'
 import React from 'react'
+import { FaReact, FaNodeJs, FaLightbulb, FaArrowRight } from 'react-icons/fa'
+// import * as eva from 'eva-icons'
 
 import {
+  Box,
   Button,
   Center,
   Divider,
   Flex,
   Heading,
   HStack,
+  Icon,
   Image,
+  SimpleGrid,
   Text,
   VStack
 } from '@chakra-ui/react'
@@ -96,6 +101,69 @@ export default function Home() {
             <Heading variant="20" as="span">
               ENVIADOS
             </Heading>
+          </VStack>
+        </HStack>
+        <HStack py={36} px={24} spacing={28}>
+          <SimpleGrid columns={2} spacingX={10} spacingY={14}>
+            <VStack spacing={5}>
+              <Box bgColor="#7EADC8" p={4} borderRadius={14}>
+                <Icon as={FaReact} w={16} h={16} />
+              </Box>
+              <Heading variant="24">ReactJS</Heading>
+              <Text variant="16" textAlign="center">
+                Desafios com uma das bibliotecas mais utilizadas para frontend
+                no mercado.
+              </Text>
+            </VStack>
+            <VStack spacing={5}>
+              <Box bgColor="#9E7EC8" p={4} borderRadius={14}>
+                <Icon as={FaNodeJs} w={16} h={16} />
+              </Box>
+              <Heading variant="24">NodeJS</Heading>
+              <Text variant="16" textAlign="center">
+                Desafios sobre backend com a ferramenta NodeJS!
+              </Text>
+            </VStack>
+            <VStack spacing={5}>
+              <Box bgColor="gray.600" p={4} borderRadius={14}>
+                <Icon as={FaLightbulb} w={16} h={16} color="gray.700" />
+              </Box>
+              <Heading variant="24">Em breve...</Heading>
+              <Text variant="16" textAlign="center">
+                Em breve mais tecnologias com mais desafios para todos os devs!
+              </Text>
+            </VStack>
+            <VStack spacing={5}>
+              <Box bgColor="gray.600" p={4} borderRadius={14}>
+                <Icon as={FaLightbulb} w={16} h={16} color="gray.700" />
+                <i data-eva="github"></i>
+              </Box>
+              <Heading variant="24">Em breve...</Heading>
+              <Text variant="16" textAlign="center">
+                Em breve mais tecnologias com mais desafios para todos os devs!
+              </Text>
+            </VStack>
+          </SimpleGrid>
+          <VStack spacing={8} display="flex" alignItems="left">
+            <Heading variant="48">Escolha a melhor tecnologia</Heading>
+            <Text variant="18">
+              Temos desafios de várias tecnologias modernas no mercado, então
+              essa é uma boa hora para treinar uma nova tecnologia ou então
+              aperfeiçoar seus conhecimentos em uma. <br /> <br /> Cada desafio
+              disponibiliza um template com testes. O objetivo do dev é fazer
+              com que todos testes passem.
+            </Text>
+            <Button
+              rightIcon={<FaArrowRight />}
+              size="lg"
+              variant="outline"
+              colorScheme="pink"
+              border="2px"
+              borderRadius="20px"
+              maxW="16rem"
+            >
+              Comece agora
+            </Button>
           </VStack>
         </HStack>
       </VStack>
