@@ -1,58 +1,113 @@
-# Frontend Setup
+<h1 align="center">
+    <a href="#" alt="site do x1code"> X1Code </a>
+</h1>
 
-This is a template for front-end projects created by Space Coders developers. You may
-clone it and start a new project from scratch with all the style guides and settings we
-use in every project. Remember, it all starts with organization!
+<h3 align="center">
+    Desafios para que desenvolvedores resolvam, estudem e compitam com outros devs!
+</h3>
+
+<h4 align="center">
+	🚧 Em construção 🚧
+</h4>
+
+Tabela de conteúdos
+=================
+<!--ts-->
+   * [Sobre o projeto](#-sobre-o-projeto)
+   * [Funcionalidades](#-funcionalidades)
+   * [Como executar o projeto](#-como-executar-o-projeto)
+   * [Tecnologias](#-tecnologias)
+   * [Equipe SpaceCoders](#-equipe-spacecoders)
+<!--te-->
 
 
-## Usage
+## 💻 Sobre o projeto
 
-To use this template, first you will clone this repository using `http` or `ssh` links.
-You can also set the new folder name to be your project name.
+X1Code - é um site onde desenvolvedores podem treinar suas habilidades com desafios separados por níveis e tecnologia,
+além disso o usuário participa de um ranking de usuários, onde quanto mais desafios você envia, mais pontos você ganhar para
+participar do ranking.
 
-```
-git clone <repository link> <new project name>
-```
 
-Go to the created folder and run `yarn` to install dependencies.
+Projeto desenvolvido para o Code/Station hackathon feito pela [Rocketseat](https://blog.rocketseat.com.br/primeira-next-level-week/)
+e [Shawee](https://shawee.io/pt/).
 
-```
-// You can use npm
+---
 
-npm install
+## ⚙️ Funcionalidades
 
-// Or you can use yarn
+- [ ] Usuário pode se cadastrar na plataforma e:
+  - [ ] Enviar a resolução de um desafio
+  - [ ] Comentar nos desafios
 
-yarn
-```
+- [ ] São disponibilizados desafios com:
+  - [ ] Testes que devem ser cumpridos pelo usuário
+  - [ ] Níveis diferentes de dificuldade
 
-Open the folder on your code editor and start coding!
+- [ ] É possível ver um ranking:
+  - [ ] Geral de todos os usuários
+  - [ ] Filtrado por desafio
+  - [ ] Filtrado por tecnologia
 
-  
-## Documentation
+---
 
-A documentation about the template. Every style guide and setting will be
-here if you need to know. If you have any suggestions, show them to others and
-everyone will vote.
+## 🚀 Como executar o projeto
 
-### Style Guides
+Você pode acessar o projeto já funcionando no site: [X1Code]()
 
-In this project we use EsLint, Prettier and EditorConfig to make the code more organized.
-EsLint setup is based on Standard template, you can read more about it in the [official documentation](https://github.com/standard/eslint-config-standard).
-Please follow all rules.
+---
 
-### Commit Lint
+## 🛠 Tecnologias
 
-We follow the [conventional commit](https://www.conventionalcommits.org/) rules to make ours commit
-more organized. Husk is also setted up, so any erros in commits will be show at the moment you press `Enter`.
+As seguintes ferramentas foram usadas na construção do projeto:
 
-To make it easier to commit, commitizen it's also setted up. Run `git cz` to commit using it.
+#### **Website**  ([Next](https://nextjs.org)  +  [TypeScript](https://www.typescriptlang.org/))
 
-### Styled components
+-   **[ChakraUI](https://chakra-ui.com)**
 
-Styled components it's already setted, also .svg import it's setted to work. Altough we preffer to use
-react icons library or other to use icons in ours applications. Only in last case we use .svg icons importted.
+> Veja o arquivo  [package.json](https://github.com/Space-Coders-Hackaton/x1-code-frontend/blob/master/package.json)
 
-### Typescript
+---
 
-As expected, typescript it's already setted. We use typescript in all projects, including this one.
+## 👨‍💻 Equipe SpaceCoders
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/carlosmfreitas2409">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/32655274?v=4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Carlos Eduardo</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/ManoelDev">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/2908499?v=4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Manoel Neto</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/allyfx">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/66289769?v=4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Alícia Foureaux</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Gilvan-Araujo">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/45008443?v=4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Gilvan Araújo</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/JuDCraide">
+        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/47929434?v=4" width="100px;" alt=""/>
+        <br />
+        <sub><b>Júlia D. Craide</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
