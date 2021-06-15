@@ -45,8 +45,13 @@ export default function Home() {
               tecnologias. Compita com outros usuários com o nosso sistema de
               ranking e pontos!
             </Text>
-            <Button size="lg" bgColor="purple.500" w={36}>
-              Desafios
+            <Button
+              bgColor="purple.500"
+              size="lg"
+              _hover={{ bgColor: 'purple.700' }}
+              maxW="9.1875rem"
+            >
+              <Heading variant="18">Desafios</Heading>
             </Button>
           </VStack>
           <Flex as="section">
@@ -154,15 +159,21 @@ export default function Home() {
               com que todos testes passem.
             </Text>
             <Button
-              rightIcon={<FaArrowRight />}
-              size="lg"
-              variant="outline"
-              colorScheme="pink"
+              bgColor="transparent"
+              borderColor="pink.500"
               border="2px"
+              variant="outline"
               borderRadius="20px"
-              maxW="16rem"
+              size="lg"
+              _hover={{ bgColor: 'pink.500' }}
+              maxW="16.125rem"
+              rightIcon={<FaArrowRight />}
+              fontWeight={700}
+              fontSize="20px"
+              lineHeight="150%"
+              h={16}
             >
-              Comece agora
+              <Heading variant="18">Comece agora</Heading>
             </Button>
           </VStack>
         </HStack>
