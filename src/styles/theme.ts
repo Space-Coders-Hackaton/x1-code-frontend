@@ -38,6 +38,11 @@ export const theme = extendTheme({
   components: {
     Heading: {
       variants: {
+        72: {
+          fontWeight: 700,
+          fontSize: '72px',
+          lineHeight: '130%'
+        },
         48: {
           fontWeight: 700,
           fontSize: '48px',
