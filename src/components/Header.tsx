@@ -1,6 +1,6 @@
-import React from 'react'
+import * as eva from 'eva-icons'
+import React, { useEffect } from 'react'
 
-import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import {
   Button,
   Flex,
@@ -14,6 +14,10 @@ import {
 } from '@chakra-ui/react'
 
 export function Header() {
+  useEffect(() => {
+    eva.replace()
+  }, [])
+
   return (
     <Flex as="header" py={8} px={28} justify="space-between">
       <HStack spacing={10}>
@@ -21,7 +25,14 @@ export function Header() {
         <Menu colorScheme="black" closeOnSelect={false} autoSelect={false}>
           <MenuButton
             as={Button}
-            rightIcon={<ChevronDownIcon />}
+            rightIcon={
+              <i
+                data-eva="arrow-ios-downward-outline"
+                data-eva-fill="#fff"
+                data-eva-hover="false"
+                data-eva-infinite="true"
+              />
+            }
             colorScheme="black"
             fontWeight={700}
             fontSize="20px"
@@ -49,7 +60,14 @@ export function Header() {
             <Menu placement="right" autoSelect={false}>
               <MenuButton
                 as={Button}
-                rightIcon={<ChevronRightIcon />}
+                rightIcon={
+                  <i
+                    data-eva="arrow-ios-forward-outline"
+                    data-eva-fill="#fff"
+                    data-eva-hover="false"
+                    data-eva-infinite="true"
+                  />
+                }
                 colorScheme="gray.700"
                 fontWeight={600}
                 fontSize="18px"
@@ -93,7 +111,14 @@ export function Header() {
         <Menu colorScheme="black" closeOnSelect={false} autoSelect={false}>
           <MenuButton
             as={Button}
-            rightIcon={<ChevronDownIcon />}
+            rightIcon={
+              <i
+                data-eva="arrow-ios-downward-outline"
+                data-eva-fill="#fff"
+                data-eva-hover="false"
+                data-eva-infinite="true"
+              />
+            }
             colorScheme="black"
             fontWeight={700}
             fontSize="20px"
