@@ -7,14 +7,13 @@ import {
   Text,
   HStack,
   List,
-  ListItem,
+  ListItem
 } from '@chakra-ui/react'
 
 export function Footer() {
   return (
     <Flex
       as="footer"
-      position="absolute"
       w="100%"
       bottom={0}
       py={24}
