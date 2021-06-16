@@ -39,11 +39,17 @@ export default function Home() {
             bgRepeat="no-repeat"
             px={24}
             pt={36}
-            spacing={32}
+            spacing={300}
             display="flex"
             justifyContent="space-between"
           >
-            <VStack as="section" spacing={8} display="flex" alignItems="left">
+            <VStack
+              as="section"
+              spacing={8}
+              display="flex"
+              alignItems="left"
+              w={480}
+            >
               <Heading variant="48">Desafios e competições!</Heading>
               <Text variant="18">
                 Desafie-se concluindo diversos desafios dos mais diversos níveis
