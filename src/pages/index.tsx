@@ -5,7 +5,6 @@ import * as eva from 'eva-icons'
 
 import {
   Box,
-  Button,
   Divider,
   Flex,
   Heading,
@@ -16,6 +15,8 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
+
+import Button from '../components/Button'
 
 import Mouse from '../../public/mouse.svg'
 
@@ -49,14 +50,7 @@ export default function Home() {
                 e tecnologias. Compita com outros usuários com o nosso sistema
                 de ranking e pontos!
               </Text>
-              <Button
-                bgColor="purple.500"
-                size="lg"
-                _hover={{ bgColor: 'purple.700' }}
-                maxW="9.1875rem"
-              >
-                <Heading variant="18">Desafios</Heading>
-              </Button>
+              <Button.Solid>Desafios</Button.Solid>
             </VStack>
             <Flex as="section">
               <Image src="code.svg" minW="615px" />
@@ -173,25 +167,13 @@ export default function Home() {
               disponibiliza um template com testes. O objetivo do dev é fazer
               com que todos testes passem.
             </Text>
-            <Button
-              bgColor="transparent"
-              borderColor="pink.500"
-              border="2px"
-              variant="outline"
-              borderRadius="20px"
-              size="lg"
-              _hover={{ bgColor: 'pink.500' }}
-              maxW="16.125rem"
+            <Button.OutlinePink
               rightIcon={
                 <i data-eva="arrow-forward-outline" data-eva-fill="#fff "></i>
               }
-              fontWeight={700}
-              fontSize="20px"
-              lineHeight="150%"
-              h={16}
             >
               <Heading variant="18">Comece agora</Heading>
-            </Button>
+            </Button.OutlinePink>
           </VStack>
         </HStack>
       </VStack>
