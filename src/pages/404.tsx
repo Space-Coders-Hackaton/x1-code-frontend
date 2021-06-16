@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 import {
   Button,
@@ -15,7 +16,7 @@ export default function FourOhFour() {
     <HStack
       as="section"
       h="calc(100vh - 7rem)"
-      px={24}
+      px={28}
       display="flex"
       justifyContent="space-between"
     >
@@ -34,14 +35,18 @@ export default function FourOhFour() {
         <Text variant="24" fontWeight={400} w="24rem">
           Por favor, navegue sua IDE de volta para a base testada!
         </Text>
-        <Button
-          bgColor="purple.500"
-          size="lg"
-          _hover={{ bgColor: 'purple.700' }}
-          maxW="9.1875rem"
-        >
-          <Heading variant="18">Página Inicial</Heading>
-        </Button>
+        <Link href="/">
+          <a>
+            <Button
+              bgColor="purple.500"
+              size="lg"
+              _hover={{ bgColor: 'purple.700' }}
+              maxW="9.1875rem"
+            >
+              <Heading variant="18">Página Inicial</Heading>
+            </Button>
+          </a>
+        </Link>
       </VStack>
     </HStack>
   )
