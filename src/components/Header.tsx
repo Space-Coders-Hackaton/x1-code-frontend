@@ -1,5 +1,6 @@
 import * as eva from 'eva-icons'
 import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 import {
   Button as ChakraButton,
@@ -18,9 +19,15 @@ import { MenuItem } from './Menu/MenuItem'
 import { menuRoutes } from '../utils/menuRoutes'
 
 export function Header() {
+  const router = useRouter()
+
   useEffect(() => {
     eva.replace()
   }, [])
+
+  function handleNavigate(to: string) {
+    router.push(to)
+  }
 
   return (
     <Flex as="header" py={8} px={28} justify="space-between">
@@ -37,6 +44,7 @@ export function Header() {
                 fontWeight={700}
                 fontSize="20px"
                 lineHeight="150%"
+                onClick={() => handleNavigate(menuItem.to)}
               >
                 {menuItem.name}
               </ChakraButton>
@@ -61,18 +69,30 @@ export function Header() {
                   >
                     {menuItem.items.map(item => {
                       if (!item.subItems) {
-                        return <MenuItem>{item.name}</MenuItem>
+                        return (
+                          <MenuItem onClick={() => handleNavigate(item.to)}>
+                            {item.name}
+                          </MenuItem>
+                        )
                       } else {
                         return (
                           <Menu placement="right" autoSelect={false}>
-                            <SubMenuButton icon>{item.name}</SubMenuButton>
+                            <SubMenuButton
+                              onClick={() => handleNavigate(item.to)}
+                              icon
+                            >
+                              {item.name}
+                            </SubMenuButton>
                             <MenuList
                               bgColor="#26262b"
                               minWidth="full"
                               border={0}
                             >
                               {item.subItems.map(subItem => (
-                                <MenuItem key={subItem.name}>
+                                <MenuItem
+                                  key={subItem.name}
+                                  onClick={() => handleNavigate(subItem.to)}
+                                >
                                   {subItem.name}
                                 </MenuItem>
                               ))}

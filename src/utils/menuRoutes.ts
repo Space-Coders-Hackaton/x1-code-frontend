@@ -16,7 +16,8 @@ export const menuRoutes: MenuRoutesItem[] = [
     name: 'Desafios',
     items: [
       {
-        name: 'Todos'
+        name: 'Todos',
+        to: '/challenges'
       },
       {
         name: 'Níveis',
@@ -38,13 +39,16 @@ export const menuRoutes: MenuRoutesItem[] = [
     name: 'Rankings',
     items: [
       {
-        name: 'Geral'
+        name: 'Geral',
+        to: '/rankings'
       },
       {
-        name: 'Desafio'
+        name: 'Desafio',
+        to: '/rankings/challenge'
       },
       {
-        name: 'Tecnologia'
+        name: 'Tecnologia',
+        to: '/rankings/tech'
       }
     ]
   },
