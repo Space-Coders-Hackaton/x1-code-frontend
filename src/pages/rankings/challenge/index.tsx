@@ -1,5 +1,8 @@
+import * as eva from 'eva-icons'
+import Link from 'next/link'
 import React, { useEffect } from 'react'
 
+import { InfoIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -16,9 +19,8 @@ import {
   Tooltip,
   VStack
 } from '@chakra-ui/react'
-import * as eva from 'eva-icons'
-import { Pagination } from '../../components/Pagination'
-import { InfoIcon } from '@chakra-ui/icons'
+
+import { Pagination } from '../../../components/Pagination'
 
 export default function Challenges() {
   const elements = [1, 2, 3, 4, 5, 6]
@@ -96,32 +98,39 @@ export default function Challenges() {
       <SimpleGrid columns={3} spacing={8} minChildWidth="340px">
         {elements.map(element => {
           return (
-            <VStack
+            <Link
               key={element}
-              bgColor="gray.800"
-              borderRadius="11px"
-              display="flex"
-              alignItems="left"
-              p={6}
-              spacing={6}
+              as={`/rankings/challenge/${element}`}
+              href="/rankings/challenge/[element]"
             >
-              <Image
-                src="https://via.placeholder.com/340"
-                // borderRadius="20%" // add borderRadius before finishing
-                h={40}
-                w="full"
-                objectFit="cover"
-              />
-              <HStack spacing={6}>
-                <Box bgColor="purple.500" px={4} py={1} borderRadius="11px">
-                  <Heading variant="14">ReactJS</Heading>
-                </Box>
-                <Box bgColor="pink.500" px={4} py={1} borderRadius="11px">
-                  <Heading variant="14">Hard</Heading>
-                </Box>
-              </HStack>
-              <Heading variant="24">Título desafio {element}</Heading>
-            </VStack>
+              <a>
+                <VStack
+                  bgColor="gray.800"
+                  borderRadius="11px"
+                  display="flex"
+                  alignItems="left"
+                  p={6}
+                  spacing={6}
+                >
+                  <Image
+                    src="https://via.placeholder.com/340"
+                    // borderRadius="20%" // add borderRadius before finishing
+                    h={40}
+                    w="full"
+                    objectFit="cover"
+                  />
+                  <HStack spacing={6}>
+                    <Box bgColor="purple.500" px={4} py={1} borderRadius="11px">
+                      <Heading variant="14">ReactJS</Heading>
+                    </Box>
+                    <Box bgColor="pink.500" px={4} py={1} borderRadius="11px">
+                      <Heading variant="14">Hard</Heading>
+                    </Box>
+                  </HStack>
+                  <Heading variant="24">Título desafio {element}</Heading>
+                </VStack>
+              </a>
+            </Link>
           )
         })}
       </SimpleGrid>
