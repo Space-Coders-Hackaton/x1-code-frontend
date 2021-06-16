@@ -1,23 +1,51 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Box,
-  Button,
   Flex,
   Heading,
   HStack,
   Image,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   SimpleGrid,
   VStack
 } from '@chakra-ui/react'
 import * as eva from 'eva-icons'
+
 import { Pagination } from '../components/Pagination'
+import { Select } from '../components/Select'
+
+import { Option } from '../utils/interfaces'
+
+const levelOptions: Option[] = [
+  {
+    optionText: 'Hard',
+    value: 'hard'
+  },
+  {
+    optionText: 'Normal',
+    value: 'normal'
+  },
+  {
+    optionText: 'Easy',
+    value: 'easy'
+  }
+]
+
+const techOptions: Option[] = [
+  {
+    optionText: 'ReactJS',
+    value: 'reactjs'
+  },
+  {
+    optionText: 'NodeJS',
+    value: 'nodejs'
+  }
+]
 
 export default function Challenges() {
+  const [level, setLevel] = useState<string>()
+  const [tech, setTech] = useState<string>()
+
   const elements = [1, 2, 3, 4, 5, 6]
 
   useEffect(() => {
@@ -30,53 +58,18 @@ export default function Challenges() {
         Desafios
       </Heading>
       <HStack spacing={4} pb={16}>
-        <Menu autoSelect={false}>
-          <MenuButton
-            as={Button}
-            w={32}
-            bgColor="gray.800"
-            textColor="white"
-            rightIcon={<i data-eva="arrow-down" data-eva-fill="#33303E"></i>}
-            _hover={{ bgColor: 'gray.700' }}
-            colorScheme="gray.700"
-            textAlign="left"
-          >
-            <Heading variant="18">Nível</Heading>
-          </MenuButton>
-          <MenuList bgColor="gray.800" minWidth={32} border={0}>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Easy</Heading>
-            </MenuItem>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Normal</Heading>
-            </MenuItem>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Hard</Heading>
-            </MenuItem>
-          </MenuList>
-        </Menu>
-        <Menu autoSelect={false}>
-          <MenuButton
-            as={Button}
-            w={44}
-            bgColor="gray.800"
-            textColor="white"
-            rightIcon={<i data-eva="arrow-down" data-eva-fill="#33303E"></i>}
-            _hover={{ bgColor: 'gray.700' }}
-            colorScheme="gray.700"
-            textAlign="left"
-          >
-            <Heading variant="18">Tecnologia</Heading>
-          </MenuButton>
-          <MenuList bgColor="gray.800" minWidth={44} border={0}>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">React</Heading>
-            </MenuItem>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Node.JS</Heading>
-            </MenuItem>
-          </MenuList>
-        </Menu>
+        <Select
+          onSelect={option => setLevel(option.value)}
+          options={levelOptions}
+          placeholder="Nível"
+          selected={levelOptions.find(op => op.value === level)}
+        />
+        <Select
+          onSelect={option => setTech(option.value)}
+          options={techOptions}
+          placeholder="Tecnologia"
+          selected={techOptions.find(op => op.value === tech)}
+        />
       </HStack>
       <SimpleGrid columns={3} spacing={8} minChildWidth="340px">
         {elements.map(element => {
@@ -92,7 +85,7 @@ export default function Challenges() {
             >
               <Image
                 src="https://via.placeholder.com/340"
-                // borderRadius="20%" // add borderRadius before finishing
+                borderRadius="11"
                 h={40}
                 w="full"
                 objectFit="cover"
