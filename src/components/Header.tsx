@@ -21,7 +21,7 @@ export function Header() {
   return (
     <Flex as="header" py={8} px={28} justify="space-between">
       <HStack spacing={10}>
-        <Image src="logo.svg" w={24} />
+        <Image src="/logo.svg" w={24} />
         <Menu colorScheme="black" closeOnSelect={false} autoSelect={false}>
           <MenuButton
             as={Button}

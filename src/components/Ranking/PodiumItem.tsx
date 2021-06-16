@@ -94,7 +94,7 @@ export function PodiumItem({ image, place, name, score }: PodiumItemProps) {
 
   return (
     <Flex direction="column" alignItems="center">
-      {place === 1 ? <Image src="crown.svg" w="65px" pb={4} /> : ''}
+      {place === 1 ? <Image src="/crown.svg" w="65px" pb={4} /> : ''}
       {podiumImage}
     </Flex>
   )
