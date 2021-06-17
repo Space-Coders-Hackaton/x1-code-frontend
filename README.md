@@ -1,5 +1,5 @@
 <h1 align="center">
-    <a href="#" alt="site do x1code"> X1Code </a>
+    <a href="https://xonecode.vercel.app" alt="site do x1code"> X1Code </a>
 </h1>
 
 <h3 align="center">
@@ -37,7 +37,11 @@ e [Shawee](https://shawee.io/pt/).
 
 - [ ] Usuário pode se cadastrar na plataforma e:
   - [ ] Enviar a resolução de um desafio
-  - [ ] Comentar nos desafios
+
+- [ ] Desafios
+  - [x] É possível listar todos os desafios
+  - [x] É possível listar um desafio em específico
+  - [ ] É possível enviar a solução de um desafio
 
 - [ ] São disponibilizados desafios com:
   - [ ] Testes que devem ser cumpridos pelo usuário
