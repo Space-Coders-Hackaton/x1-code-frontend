@@ -56,7 +56,7 @@ e [Shawee](https://shawee.io/pt/).
 
 ## 🚀 Como executar o projeto
 
-Você pode acessar o projeto já funcionando no site: [X1Code](https://xonecode.vercel.app")
+Você pode acessar o projeto já funcionando no site: [X1Code](https://xonecode.vercel.app)
 
 ---
 
