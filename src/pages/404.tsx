@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
+import Link from 'next/link'
+import React from 'react'
 
 import {
   Button,
@@ -42,12 +42,7 @@ export default function FourOhFour() {
         </Text>
         <Link href="/">
           <a>
-            <Button
-              bgColor="purple.500"
-              size="lg"
-              _hover={{ bgColor: 'purple.700' }}
-              maxW="9.1875rem"
-            >
+            <Button variant="solid">
               <Heading variant="18">Página Inicial</Heading>
             </Button>
           </a>

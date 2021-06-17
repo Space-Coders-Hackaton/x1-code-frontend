@@ -1,6 +1,5 @@
-import { Center, Heading, Input, Text, VStack } from '@chakra-ui/react'
+import { Button, Center, Heading, Input, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
-import Button from '../components/Button'
 import * as eva from 'eva-icons'
 
 export default function login() {
@@ -37,17 +36,16 @@ export default function login() {
           ))}
         </VStack>
         <VStack spacing={4}>
-          <Button.Solid w={96}>
+          <Button variant="solid" w={96}>
             <Heading variant="18">Fazer login</Heading>
-          </Button.Solid>
-          <Button.OutlinePink
+          </Button>
+          <Button
+            variant="outline"
             minW={96}
-            display="flex"
-            flexDirection="row"
             rightIcon={<i data-eva="github" data-eva-fill="#8D34D9" />}
           >
             <Heading variant="18">Entrar pelo Github</Heading>
-          </Button.OutlinePink>
+          </Button>
         </VStack>
       </VStack>
     </Center>

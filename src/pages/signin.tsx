@@ -1,6 +1,5 @@
-import { Center, Heading, Input, Text, VStack } from '@chakra-ui/react'
+import { Center, Button, Heading, Input, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
-import Button from '../components/Button'
 import * as eva from 'eva-icons'
 
 export default function signn() {
@@ -37,17 +36,16 @@ export default function signn() {
           ))}
         </VStack>
         <VStack spacing={4}>
-          <Button.Solid w={96}>
+          <Button variant="solid" w={96}>
             <Heading variant="18">Cadastrar-se</Heading>
-          </Button.Solid>
-          <Button.OutlinePink
+          </Button>
+          <Button
+            variant="outline"
             minW={96}
-            display="flex"
-            flexDirection="row"
             rightIcon={<i data-eva="github" data-eva-fill="#8D34D9" />}
           >
             <Heading variant="18">Cadastrar com Github</Heading>
-          </Button.OutlinePink>
+          </Button>
         </VStack>
       </VStack>
     </Center>

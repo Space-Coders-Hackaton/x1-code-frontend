@@ -1,11 +1,12 @@
-import Head from 'next/head'
-import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { FaReact, FaNodeJs } from 'react-icons/fa'
 import * as eva from 'eva-icons'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+import { FaNodeJs, FaReact } from 'react-icons/fa'
 
 import {
   Box,
+  Button,
   Divider,
   Flex,
   Heading,
@@ -16,8 +17,6 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-
-import Button from '../components/Button'
 
 import Mouse from '../../public/mouse.svg'
 
@@ -63,9 +62,9 @@ export default function Home() {
                 e tecnologias. Compita com outros usuários com o nosso sistema
                 de ranking e pontos!
               </Text>
-              <Button.Solid onClick={handleNavigateToChallenges}>
-                Desafios
-              </Button.Solid>
+              <Button variant="solid" onClick={handleNavigateToChallenges}>
+                <Heading variant="18">Desafios</Heading>
+              </Button>
             </VStack>
             <Flex as="section">
               <Image src="code.svg" minW="615px" />
@@ -182,14 +181,15 @@ export default function Home() {
               disponibiliza um template com testes. O objetivo do dev é fazer
               com que todos testes passem.
             </Text>
-            <Button.OutlinePink
+            <Button
+              variant="outline"
               rightIcon={
                 <i data-eva="arrow-forward-outline" data-eva-fill="#fff "></i>
               }
               onClick={handleNavigateToChallenges}
             >
               Comece agora
-            </Button.OutlinePink>
+            </Button>
           </VStack>
         </HStack>
       </VStack>
