@@ -1,5 +1,5 @@
 <h1 align="center">
-    <a href="https://xonecode.vercel.app" alt="site do x1code"> X1Code </a>
+    <a href="https://xonecode.vercel.app" alt="site do x1code" target="_blank"> X1Code </a>
 </h1>
 
 <h3 align="center">
