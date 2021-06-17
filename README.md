@@ -1,5 +1,5 @@
 <h1 align="center">
-    <a href="#" alt="site do x1code"> X1Code </a>
+    <a href="https://xonecode.vercel.app" alt="site do x1code" target="_blank"> X1Code </a>
 </h1>
 
 <h3 align="center">
@@ -37,7 +37,11 @@ e [Shawee](https://shawee.io/pt/).
 
 - [ ] Usuário pode se cadastrar na plataforma e:
   - [ ] Enviar a resolução de um desafio
-  - [ ] Comentar nos desafios
+
+- [ ] Desafios
+  - [x] É possível listar todos os desafios
+  - [x] É possível listar um desafio em específico
+  - [ ] É possível enviar a solução de um desafio
 
 - [ ] São disponibilizados desafios com:
   - [ ] Testes que devem ser cumpridos pelo usuário
@@ -52,7 +56,7 @@ e [Shawee](https://shawee.io/pt/).
 
 ## 🚀 Como executar o projeto
 
-Você pode acessar o projeto já funcionando no site: [X1Code]()
+Você pode acessar o projeto já funcionando no site: [X1Code](https://xonecode.vercel.app)
 
 ---
 
@@ -98,13 +102,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
         <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/45008443?v=4" width="100px;" alt=""/>
         <br />
         <sub><b>Gilvan Araújo</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/JuDCraide">
-        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/47929434?v=4" width="100px;" alt=""/>
-        <br />
-        <sub><b>Júlia D. Craide</b></sub>
       </a>
     </td>
   </tr>
