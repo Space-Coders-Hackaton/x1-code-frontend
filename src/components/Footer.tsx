@@ -107,29 +107,19 @@ export function Footer() {
                 color="gray.500"
                 variant="18"
                 isExternal
-                href="https://github.com/carlosmfreitas2409"
-              >
-                Carlos Eduardo
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link
-                color="gray.500"
-                variant="18"
-                isExternal
-                href="https://github.com/ManoelDev"
-              >
-                Manoel Neto
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link
-                color="gray.500"
-                variant="18"
-                isExternal
                 href="https://github.com/allyfx"
               >
                 Alícia Foureaux
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link
+                color="gray.500"
+                variant="18"
+                isExternal
+                href="https://github.com/carlosmfreitas2409"
+              >
+                Carlos Eduardo
               </Link>
             </ListItem>
             <ListItem>
@@ -147,9 +137,9 @@ export function Footer() {
                 color="gray.500"
                 variant="18"
                 isExternal
-                href="https://github.com/JuDCraide"
+                href="https://github.com/ManoelDev"
               >
-                Júlia D. Craide
+                Manoel Neto
               </Link>
             </ListItem>
           </List>
