@@ -65,12 +65,29 @@ export default function Challenges({ challenges }: ChallengesProps) {
   const [currentPage, setCurrentPage] = useState(1)
   const [showChallenges, setShowChallenges] = useState<Challenge[]>([])
 
-  const [level, setLevel] = useState<string>()
-  const [tech, setTech] = useState<string>()
+  const [level, setLevel] = useState('')
+  const [tech, setTech] = useState('')
+
+  function filterChallenges() {
+    return challenges.filter(challenge => {
+      if (
+        (challenge.difficulty.toLowerCase() === level.toLowerCase() &&
+          challenge.technology.toLowerCase() === tech.toLowerCase()) ||
+        !tech ||
+        !level
+      ) {
+        return challenge
+      }
+    })
+  }
 
   useEffect(() => {
     eva.replace()
   }, [])
+
+  useEffect(() => {
+    setShowChallenges(filterChallenges())
+  }, [tech, level])
 
   useEffect(() => {
     const newChallenges: Challenge[] = []
@@ -102,6 +119,10 @@ export default function Challenges({ challenges }: ChallengesProps) {
         />
       </HStack>
       <SimpleGrid columns={3} spacing={8} minChildWidth="340px">
+        {showChallenges.length <= 0 && (
+          <Heading variant="18">Nenhum desafio</Heading>
+        )}
+
         {showChallenges.map(challenge => {
           return (
             <VStack
