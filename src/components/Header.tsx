@@ -12,7 +12,6 @@ import {
   MenuList
 } from '@chakra-ui/react'
 
-import Button from '../components/Button'
 import { MenuButton } from './Menu/MenuButton'
 import { SubMenuButton } from './Menu/SubMenuButton'
 import { MenuItem } from './Menu/MenuItem'
