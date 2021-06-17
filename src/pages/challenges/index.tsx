@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import Prismic from '@prismicio/client'
-import { getPrismicClient } from '../services/prismic'
+import { getPrismicClient } from '../../services/prismic'
 import { RichText } from 'prismic-dom'
 import React, { useEffect, useState } from 'react'
 
@@ -15,10 +16,10 @@ import {
 } from '@chakra-ui/react'
 import * as eva from 'eva-icons'
 
-import { Pagination } from '../components/Pagination'
-import { Select } from '../components/Select'
+import { Pagination } from '../../components/Pagination'
+import { Select } from '../../components/Select'
 
-import { Option } from '../utils/interfaces'
+import { Option } from '../../utils/interfaces'
 
 const levelOptions: Option[] = [
   {
@@ -59,6 +60,8 @@ interface ChallengesProps {
 }
 
 export default function Challenges({ challenges }: ChallengesProps) {
+  const router = useRouter()
+
   const [currentPage, setCurrentPage] = useState(1)
   const [showChallenges, setShowChallenges] = useState<Challenge[]>([])
 
@@ -110,6 +113,8 @@ export default function Challenges({ challenges }: ChallengesProps) {
               p={6}
               spacing={6}
               maxW={389}
+              cursor="pointer"
+              onClick={() => router.push(`/challenges/${challenge.slug}`)}
             >
               <Image
                 src={challenge.banner}
