@@ -17,6 +17,7 @@ import { SubMenuButton } from './Menu/SubMenuButton'
 import { MenuItem } from './Menu/MenuItem'
 
 import { menuRoutes } from '../utils/menuRoutes'
+import Link from 'next/link'
 
 export function Header() {
   const router = useRouter()
@@ -117,8 +118,16 @@ export function Header() {
       </HStack>
 
       <HStack spacing={6}>
-        <Button.Transparent>Cadastrar</Button.Transparent>
-        <Button.Solid>Entrar</Button.Solid>
+        <Link href="/signin">
+          <a>
+            <Button.Transparent>Cadastrar</Button.Transparent>
+          </a>
+        </Link>
+        <Link href="/login">
+          <a>
+            <Button.Solid>Entrar</Button.Solid>
+          </a>
+        </Link>
       </HStack>
     </Flex>
   )
