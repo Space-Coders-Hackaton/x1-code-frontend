@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Prismic from '@prismicio/client'
 import { getPrismicClient } from '../../services/prismic'
@@ -84,6 +85,10 @@ export default function Challenges({ challenges }: ChallengesProps) {
 
   return (
     <Flex py={12} px={28} direction="column">
+      <Head>
+        <title>Desafios | X1 Code</title>
+      </Head>
+
       <Heading variant="48" mb={6}>
         Desafios
       </Heading>

@@ -33,7 +33,7 @@ export default function Challenge({ challenge }: ChallengeProps) {
   return (
     <>
       <Head>
-        <title>{challenge.title} | X1Code</title>
+        <title>{challenge.title} | X1 Code</title>
       </Head>
 
       <Flex py={12} px={28} direction="column" alignItems="center">
