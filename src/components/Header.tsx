@@ -5,13 +5,13 @@ import { useRouter } from 'next/router'
 import {
   Button as ChakraButton,
   Flex,
+  Heading,
   HStack,
   Image,
   Menu,
   MenuList
 } from '@chakra-ui/react'
 
-import Button from '../components/Button'
 import { MenuButton } from './Menu/MenuButton'
 import { SubMenuButton } from './Menu/SubMenuButton'
 import { MenuItem } from './Menu/MenuItem'
@@ -120,12 +120,16 @@ export function Header() {
       <HStack spacing={6}>
         <Link href="/signin">
           <a>
-            <Button.Transparent>Cadastrar</Button.Transparent>
+            <ChakraButton variant="transparent">
+              <Heading variant="18">Cadastrar</Heading>
+            </ChakraButton>
           </a>
         </Link>
         <Link href="/login">
           <a>
-            <Button.Solid>Entrar</Button.Solid>
+            <ChakraButton variant="solid">
+              <Heading variant="18">Entrar</Heading>
+            </ChakraButton>
           </a>
         </Link>
       </HStack>

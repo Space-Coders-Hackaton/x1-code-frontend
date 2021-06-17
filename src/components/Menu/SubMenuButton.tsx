@@ -14,6 +14,7 @@ export function SubMenuButton({
   return (
     <MenuButton
       as={Button}
+      variant="transparent"
       rightIcon={
         icon && (
           <i

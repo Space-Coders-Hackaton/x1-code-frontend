@@ -108,6 +108,39 @@ export const theme = extendTheme({
           lineHeight: '150%'
         }
       }
+    },
+    Button: {
+      variants: {
+        solid: {
+          bgColor: 'purple.500',
+          size: 'lg',
+          _hover: { bgColor: 'purple.700' },
+          w: 'fit-content',
+          paddingY: '16px',
+          paddingX: '33px',
+          minH: '50.5px'
+        },
+        transparent: {
+          bgColor: 'transparent',
+          size: 'lg',
+          _hover: { bgColor: 'transparent' },
+          minH: '50.5px'
+        },
+        outline: {
+          lineHeight: '130%',
+          bgColor: 'transparent',
+          borderColor: 'pink.500',
+          border: '2px',
+          variant: 'outline',
+          borderRadius: '11px',
+          size: 'lg',
+          maxW: '16.125rem',
+          fontWeight: 700,
+          fontSize: '20px',
+          minH: '50.5px',
+          _hover: { bgColor: 'pink.500' }
+        }
+      }
     }
   }
 })

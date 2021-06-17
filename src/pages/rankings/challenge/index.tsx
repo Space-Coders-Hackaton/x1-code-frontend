@@ -50,6 +50,7 @@ export default function Challenges() {
         <Menu autoSelect={false}>
           <MenuButton
             as={Button}
+            variant="transparent"
             w={32}
             bgColor="gray.800"
             textColor="white"
@@ -75,6 +76,7 @@ export default function Challenges() {
         <Menu autoSelect={false}>
           <MenuButton
             as={Button}
+            variant="transparent"
             w={44}
             bgColor="gray.800"
             textColor="white"

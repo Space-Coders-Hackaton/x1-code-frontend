@@ -5,9 +5,15 @@ import { RichText } from 'prismic-dom'
 
 import { getPrismicClient } from '../../services/prismic'
 
-import { Flex, Image, VStack, HStack, Box, Heading } from '@chakra-ui/react'
-
-import Button from '../../components/Button'
+import {
+  Flex,
+  Button,
+  Image,
+  VStack,
+  HStack,
+  Box,
+  Heading
+} from '@chakra-ui/react'
 
 import { DescriptionContainer } from '../../styles/pages/Challenge'
 
@@ -60,8 +66,12 @@ export default function Challenge({ challenge }: ChallengeProps) {
           </VStack>
 
           <HStack alignItems="flex-end">
-            <Button.Solid onClick={handleGoToTemplate}>Template</Button.Solid>
-            <Button.OutlinePink>Enviar solução</Button.OutlinePink>
+            <Button variant="solid" onClick={handleGoToTemplate}>
+              <Heading variant="18">Template</Heading>
+            </Button>
+            <Button variant="outline">
+              <Heading variant="18">Enviar solução</Heading>
+            </Button>
           </HStack>
         </Flex>
 

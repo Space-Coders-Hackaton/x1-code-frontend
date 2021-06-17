@@ -45,6 +45,7 @@ export default function Rankings() {
       <Menu autoSelect={false}>
         <MenuButton
           as={Button}
+          variant="transparent"
           mt={8}
           mb={20}
           w={44}
