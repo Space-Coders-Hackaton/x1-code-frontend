@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import {
   Button as ChakraButton,
   Flex,
+  Heading,
   HStack,
   Image,
   Menu,
@@ -120,12 +121,16 @@ export function Header() {
       <HStack spacing={6}>
         <Link href="/signin">
           <a>
-            <Button.Transparent>Cadastrar</Button.Transparent>
+            <ChakraButton variant="transparent">
+              <Heading variant="18">Cadastrar</Heading>
+            </ChakraButton>
           </a>
         </Link>
         <Link href="/login">
           <a>
-            <Button.Solid>Entrar</Button.Solid>
+            <ChakraButton variant="solid">
+              <Heading variant="18">Entrar</Heading>
+            </ChakraButton>
           </a>
         </Link>
       </HStack>

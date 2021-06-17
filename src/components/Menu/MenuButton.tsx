@@ -13,6 +13,7 @@ export function MenuButton({ children, ...props }: MenuButtonProps) {
   return (
     <ChakraMenuButton
       as={Button}
+      variant="transparent"
       rightIcon={
         <i
           data-eva="arrow-ios-downward-outline"
