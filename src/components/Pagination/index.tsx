@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
-import { Box, Button, Stack, Text } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
 
 import { PaginationItem } from './PaginationItem'
 
@@ -34,24 +34,25 @@ export function Pagination({
       ? generatePagesArray(currentPage - 1 - siblingsCount, currentPage - 1)
       : []
 
-  const nextPages =
-    currentPage < lastPage
-      ? generatePagesArray(currentPage,
-          Math.min(currentPage + siblingsCount, lastPage)
-        )
-      : []
+  const nextPages = useMemo(() => {
+    if (currentPage < lastPage) {
+      return generatePagesArray(
+        currentPage,
+        Math.min(currentPage + siblingsCount, lastPage)
+      )
+    } else {
+      return []
+    }
+  }, [currentPage, lastPage, siblingsCount])
 
   return (
     <Stack
       direction={['column', 'row']}
       spacing="6"
       mt="8"
-      justify="space-between"
+      justify="flex-end"
       align="center"
     >
-      <Box>
-        <strong>0</strong> - <strong>6</strong> de <strong>6</strong>
-      </Box>
       <Stack direction="row" spacing="2">
         {currentPage > 1 + siblingsCount && (
           <>
