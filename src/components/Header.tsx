@@ -26,13 +26,20 @@ export function Header() {
   }, [])
 
   function handleNavigate(to: string) {
-    router.push(to)
+    if (to) {
+      router.push(to)
+    }
   }
 
   return (
     <Flex as="header" py={8} px={28} justify="space-between">
       <HStack spacing={10}>
-        <Image src="logo.svg" w={24} />
+        <Image
+          src="logo.svg"
+          w={24}
+          onClick={() => handleNavigate('/')}
+          cursor="pointer"
+        />
 
         {menuRoutes.map((menuItem, key) => {
           if (!menuItem.items) {
