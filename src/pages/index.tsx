@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>X1Code - Home</title>
+        <title>Home | X1 Code</title>
       </Head>
       <VStack spacing={0} as="main">
         <VStack minH="90vh">

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 
 import {
   Button,
@@ -20,6 +21,10 @@ export default function FourOhFour() {
       display="flex"
       justifyContent="space-between"
     >
+      <Head>
+        <title>404 | X1 Code</title>
+      </Head>
+
       <Flex as="section" flexShrink={1}>
         <Image src="404.svg" />
       </Flex>
