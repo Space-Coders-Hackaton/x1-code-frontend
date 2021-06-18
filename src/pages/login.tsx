@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 import { Button, Center, Heading, Text, VStack } from '@chakra-ui/react'
 import * as eva from 'eva-icons'
 
 import { Input } from '../components/Input'
 
+import { addUserCredentials } from '../store/modules/user/action'
 import { api } from '../services/api'
 
 export default function login() {
+  const dispatch = useDispatch()
+  const router = useRouter()
+
   const [data, setData] = useState({
     email: '',
     password: ''
@@ -27,9 +33,18 @@ export default function login() {
     try {
       const response = await api.post('/sessions', data)
 
-      console.log(response.data)
+      const { user, token } = response.data
+
+      dispatch(
+        addUserCredentials({
+          ...user,
+          token
+        })
+      )
 
       // Tratativa com o Toast
+
+      router.push('/challenges')
     } catch (err) {
       // Tratativa com o Toast
 
