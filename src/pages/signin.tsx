@@ -1,13 +1,49 @@
-import { Center, Button, Heading, Input, Text, VStack } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { Center, Button, Heading, Text, VStack } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import * as eva from 'eva-icons'
 
+import { Input } from '../components/Input'
+
+import { api } from '../services/api'
+
 export default function signn() {
+  const router = useRouter()
+
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  })
+
+  function handleChange(input: string, e: React.ChangeEvent<HTMLInputElement>) {
+    e.persist()
+
+    setData(prevState => ({
+      ...prevState,
+      [input]: e.target.value
+    }))
+  }
+
+  async function handleSubmit() {
+    if (!data.email || !data.password) return
+
+    try {
+      await api.post('/user', data)
+
+      // Tratativa com o Toast
+
+      router.push('/login')
+    } catch (err) {
+      // Tratativa com o Toast
+
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
     eva.replace()
   }, [])
-
-  const inputFields = ['Email', 'Senha']
 
   return (
     <Center py={40}>
@@ -20,23 +56,19 @@ export default function signn() {
           </Text>
         </VStack>
         <VStack spacing={6}>
-          {inputFields.map(input => (
-            <Input
-              key={input}
-              placeholder={input}
-              textColor="white"
-              _placeholder={{ color: '#fff' }}
-              border="2px"
-              borderColor="gray.900"
-              borderRadius="11px"
-              bgColor="gray.700"
-              w={96}
-              size="lg"
-            />
-          ))}
+          <Input placeholder="Nome" onChange={e => handleChange('name', e)} />
+          <Input
+            placeholder="E-mail"
+            onChange={e => handleChange('email', e)}
+          />
+          <Input
+            placeholder="Senha"
+            type="password"
+            onChange={e => handleChange('password', e)}
+          />
         </VStack>
         <VStack spacing={4}>
-          <Button variant="solid" w={96}>
+          <Button onClick={handleSubmit} variant="solid" w={96}>
             <Heading variant="18">Cadastrar-se</Heading>
           </Button>
           <Button
