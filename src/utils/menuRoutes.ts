@@ -23,13 +23,16 @@ export const menuRoutes: MenuRoutesItem[] = [
         name: 'Níveis',
         subItems: [
           {
-            name: 'Hard'
+            name: 'Hard',
+            to: '/challenges?level=hard'
           },
           {
-            name: 'Normal'
+            name: 'Normal',
+            to: '/challenges?level=normal'
           },
           {
-            name: 'Easy'
+            name: 'Easy',
+            to: '/challenges?level=easy'
           }
         ]
       }
