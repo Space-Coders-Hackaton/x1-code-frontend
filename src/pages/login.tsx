@@ -1,13 +1,45 @@
-import { Button, Center, Heading, Input, Text, VStack } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button, Center, Heading, Text, VStack } from '@chakra-ui/react'
 import * as eva from 'eva-icons'
 
+import { Input } from '../components/Input'
+
+import { api } from '../services/api'
+
 export default function login() {
+  const [data, setData] = useState({
+    email: '',
+    password: ''
+  })
+
+  function handleChange(input: string, e: React.ChangeEvent<HTMLInputElement>) {
+    e.persist()
+
+    setData(prevState => ({
+      ...prevState,
+      [input]: e.target.value
+    }))
+  }
+
+  async function handleSubmit() {
+    if (!data.email || !data.password) return
+
+    try {
+      const response = await api.post('/sessions', data)
+
+      console.log(response.data)
+
+      // Tratativa com o Toast
+    } catch (err) {
+      // Tratativa com o Toast
+
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
     eva.replace()
   }, [])
-
-  const inputFields = ['Email', 'Senha']
 
   return (
     <Center py={40}>
@@ -20,23 +52,18 @@ export default function login() {
           </Text>
         </VStack>
         <VStack spacing={6}>
-          {inputFields.map(input => (
-            <Input
-              key={input}
-              placeholder={input}
-              textColor="white"
-              _placeholder={{ color: '#fff' }}
-              border="2px"
-              borderColor="gray.900"
-              borderRadius="11px"
-              bgColor="gray.700"
-              w={96}
-              size="lg"
-            />
-          ))}
+          <Input
+            placeholder="E-mail"
+            onChange={e => handleChange('email', e)}
+          />
+          <Input
+            placeholder="Senha"
+            type="password"
+            onChange={e => handleChange('password', e)}
+          />
         </VStack>
         <VStack spacing={4}>
-          <Button variant="solid" w={96}>
+          <Button variant="solid" w={96} onClick={handleSubmit}>
             <Heading variant="18">Fazer login</Heading>
           </Button>
           <Button
