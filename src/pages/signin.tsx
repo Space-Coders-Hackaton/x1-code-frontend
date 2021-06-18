@@ -1,6 +1,7 @@
 import { Center, Button, Heading, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import * as eva from 'eva-icons'
 
 import { Input } from '../components/Input'
@@ -47,6 +48,10 @@ export default function signn() {
 
   return (
     <Center py={40}>
+      <Head>
+        <title>Cadastrar | X1 Code</title>
+      </Head>
+
       <VStack spacing={10}>
         <VStack spacing={2}>
           <Heading variant="32">Bem-vindo(a)!</Heading>

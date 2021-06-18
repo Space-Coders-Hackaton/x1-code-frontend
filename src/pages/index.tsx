@@ -36,6 +36,7 @@ export default function Home() {
       <Head>
         <title>Home | X1 Code</title>
       </Head>
+
       <VStack spacing={0} as="main">
         <VStack minH="90vh">
           <HStack

@@ -1,5 +1,6 @@
 import * as eva from 'eva-icons'
 import Link from 'next/link'
+import Head from 'next/head'
 import React, { useEffect } from 'react'
 
 import { InfoIcon } from '@chakra-ui/icons'
@@ -31,6 +32,10 @@ export default function Challenges() {
 
   return (
     <Flex py={14} px={28} direction="column">
+      <Head>
+        <title>Ranking desafios | X1 Code</title>
+      </Head>
+
       <Flex direction="row" justifyContent="space-between">
         <Heading variant="48" mb={6}>
           Ranking - Desafios

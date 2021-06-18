@@ -78,13 +78,20 @@ export function Header() {
                     {menuItem.items.map(item => {
                       if (!item.subItems) {
                         return (
-                          <MenuItem onClick={() => handleNavigate(item.to)}>
+                          <MenuItem
+                            key={item.name}
+                            onClick={() => handleNavigate(item.to)}
+                          >
                             {item.name}
                           </MenuItem>
                         )
                       } else {
                         return (
-                          <Menu placement="right" autoSelect={false}>
+                          <Menu
+                            key={item.name}
+                            placement="right"
+                            autoSelect={false}
+                          >
                             <SubMenuButton
                               onClick={() => handleNavigate(item.to)}
                               icon

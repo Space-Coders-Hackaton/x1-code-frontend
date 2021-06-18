@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
 import { Button, Center, Heading, Text, VStack } from '@chakra-ui/react'
+import Head from 'next/head'
 import * as eva from 'eva-icons'
 
 import { Input } from '../components/Input'
@@ -58,6 +59,10 @@ export default function login() {
 
   return (
     <Center py={40}>
+      <Head>
+        <title>Entrar | X1 Code</title>
+      </Head>
+
       <VStack spacing={10}>
         <VStack spacing={2}>
           <Heading variant="32">Bem-vindo(a)!</Heading>
