@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Head from 'next/head'
 
 import { InfoIcon } from '@chakra-ui/icons'
 import { Menu } from '@chakra-ui/menu'
@@ -29,6 +30,10 @@ export default function Rankings() {
 
   return (
     <Flex direction="column" px={28} py={14}>
+      <Head>
+        <title>Ranking por tecnologia | X1 Code</title>
+      </Head>
+
       <Flex direction="row" justifyContent="space-between" pb={5}>
         <Heading variant="48">Ranking - Tecnologia</Heading>
         <HStack spacing={4}>

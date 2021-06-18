@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { Button, Center, Heading, Input, Text, VStack } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import * as eva from 'eva-icons'
@@ -11,6 +12,10 @@ export default function login() {
 
   return (
     <Center py={40}>
+      <Head>
+        <title>Entrar | X1 Code</title>
+      </Head>
+
       <VStack spacing={10}>
         <VStack spacing={2}>
           <Heading variant="32">Bem-vindo(a)!</Heading>
