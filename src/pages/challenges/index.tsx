@@ -21,7 +21,8 @@ import { Pagination } from '../../components/Pagination'
 import { Select } from '../../components/Select'
 
 import { Option } from '../../utils/interfaces'
-import { ChallengeModal } from '../../components/SendChallengeModal'
+import { SendChallengeModal } from '../../components/SendChallengeModal'
+import { ResendChallengeModal } from '../../components/ResendChallengeModal'
 
 const levelOptions: Option[] = [
   {
@@ -169,7 +170,8 @@ export default function Challenges({ challenges }: ChallengesProps) {
         currentPage={currentPage}
         onPageChange={setCurrentPage}
       />
-      <ChallengeModal />
+      <SendChallengeModal />
+      <ResendChallengeModal />
     </Flex>
   )
 }
