@@ -1,22 +1,31 @@
 import { Image } from '@chakra-ui/image'
-import { Box, Flex, Heading, HStack, Text, VStack } from '@chakra-ui/layout'
+import { Heading, Text, VStack } from '@chakra-ui/layout'
+import { motion } from 'framer-motion'
 import React from 'react'
 
 type CoderCardProps = {
   name: string
   role: string
+  github: string
   description: string
   imageUrl: string
 }
 
+const MotionVStack = motion(VStack)
+
 export function CoderCard({
   name,
   role,
+  github,
   description,
   imageUrl
 }: CoderCardProps) {
+  function handleNavigateGithub() {
+    window.open(github, '_blank')
+  }
+
   return (
-    <VStack
+    <MotionVStack
       spacing={6}
       bg="transparent"
       border="1px"
@@ -26,6 +35,9 @@ export function CoderCard({
       pt={0}
       display="flex"
       alignItems="left"
+      cursor="pointer"
+      onClick={handleNavigateGithub}
+      whileHover={{ scale: 1.1 }}
     >
       <Image
         src={imageUrl}
@@ -39,6 +51,6 @@ export function CoderCard({
         <Heading variant="18">{role}</Heading>
       </VStack>
       <Text variant="18">{description}</Text>
-    </VStack>
+    </MotionVStack>
   )
 }

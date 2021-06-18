@@ -36,7 +36,7 @@ export function Header() {
     <Flex as="header" py={8} px={28} justify="space-between">
       <HStack spacing={10}>
         <Image
-          src="../logo.svg"
+          src="../../../logo.svg"
           w={24}
           onClick={() => handleNavigate('/')}
           cursor="pointer"
