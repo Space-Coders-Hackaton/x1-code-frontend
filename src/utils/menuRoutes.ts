@@ -53,6 +53,7 @@ export const menuRoutes: MenuRoutesItem[] = [
     ]
   },
   {
-    name: 'Sobre'
+    name: 'Sobre',
+    to: '/about'
   }
 ]
