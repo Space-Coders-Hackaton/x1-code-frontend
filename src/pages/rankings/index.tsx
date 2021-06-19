@@ -163,7 +163,7 @@ export default function Rankings() {
       )}
 
       {users.length <= 0 && (
-        <Heading p={16} alignSelf="center" variant="18">
+        <Heading p={28} alignSelf="center" variant="18">
           Nenhum usuário ;-;
         </Heading>
       )}
