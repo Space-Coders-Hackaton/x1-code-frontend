@@ -43,6 +43,11 @@ export const theme = extendTheme({
           fontSize: '72px',
           lineHeight: '130%'
         },
+        64: {
+          fontWeight: 700,
+          fontSize: '64px',
+          lineHeight: '130%'
+        },
         48: {
           fontWeight: 700,
           fontSize: '48px',

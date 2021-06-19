@@ -71,16 +71,17 @@ export default function Challenges({ challenges }: ChallengesProps) {
   const [level, setLevel] = useState('')
   const [tech, setTech] = useState('')
 
-  function filterChallenges() {
+  function filterChallenges(isTech = false) {
+    if (!tech && !level) return challenges
+
     return challenges.filter(challenge => {
-      if (
-        (challenge.difficulty.toLowerCase() === level.toLowerCase() &&
-          challenge.technology.toLowerCase() === tech.toLowerCase()) ||
-        !tech ||
-        !level
-      ) {
-        return challenge
-      }
+      const matchDifficulty =
+        challenge.difficulty.toLowerCase() === level.toLowerCase()
+      const matchTech =
+        challenge.technology.toLowerCase() === tech.toLowerCase()
+
+      if (isTech && matchTech) return challenge
+      if (!isTech && matchDifficulty) return challenge
     })
   }
 
@@ -89,8 +90,12 @@ export default function Challenges({ challenges }: ChallengesProps) {
   }, [])
 
   useEffect(() => {
+    setShowChallenges(filterChallenges(true))
+  }, [tech])
+
+  useEffect(() => {
     setShowChallenges(filterChallenges())
-  }, [tech, level])
+  }, [level])
 
   useEffect(() => {
     const newChallenges: Challenge[] = []
@@ -101,6 +106,16 @@ export default function Challenges({ challenges }: ChallengesProps) {
     }
     setShowChallenges(newChallenges)
   }, [currentPage])
+
+  useEffect(() => {
+    const urlString = window.location.href
+    const url = new URL(urlString)
+    const paramLevel = url.searchParams.get('level')
+
+    if (paramLevel && levelOptions.find(op => op.value === paramLevel)) {
+      setLevel(paramLevel)
+    }
+  }, [])
 
   return (
     <Flex py={12} px={28} direction="column">
