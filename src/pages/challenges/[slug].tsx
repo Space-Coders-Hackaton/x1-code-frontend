@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 
 import { DescriptionContainer } from '../../styles/pages/Challenge'
+import { GoBack } from '../../components/GoBack'
 
 interface Challenge {
   slug: string
@@ -41,6 +42,10 @@ export default function Challenge({ challenge }: ChallengeProps) {
       <Head>
         <title>{challenge.title} | X1 Code</title>
       </Head>
+
+      <Flex px={40}>
+        <GoBack />
+      </Flex>
 
       <Flex py={12} px={28} direction="column" alignItems="center">
         <Image

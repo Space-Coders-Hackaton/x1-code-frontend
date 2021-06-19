@@ -15,6 +15,7 @@ import { PodiumItem } from '../../../components/Ranking/PodiumItem'
 import { ListItem } from '../../../components/Ranking/ListItem'
 
 import { api } from '../../../services/api'
+import { GoBack } from '../../../components/GoBack'
 
 interface UserRank {
   points: number
@@ -100,8 +101,9 @@ export default function Rankings({ challenge }: RankingsProps) {
         <title>{challenge} | X1 Code</title>
       </Head>
 
-      <Flex direction="row" justifyContent="space-between" pb={5}>
+      <Flex direction="column" pb={5}>
         <Heading variant="48">{challenge}</Heading>
+        <GoBack />
       </Flex>
       {users.length > 0 && (
         <>
