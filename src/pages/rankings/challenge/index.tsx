@@ -1,20 +1,19 @@
 import * as eva from 'eva-icons'
-import Link from 'next/link'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Prismic from '@prismicio/client'
+import { getPrismicClient } from '../../../services/prismic'
+import { RichText } from 'prismic-dom'
+import React, { useEffect, useState } from 'react'
 
 import { InfoIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Button,
   Flex,
   Heading,
   HStack,
   Image,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   SimpleGrid,
   Text,
   Tooltip,
@@ -22,12 +21,101 @@ import {
 } from '@chakra-ui/react'
 
 import { Pagination } from '../../../components/Pagination'
+import { Select } from '../../../components/Select'
 
-export default function Challenges() {
-  const elements = [1, 2, 3, 4, 5, 6]
+import { Option } from '../../../utils/interfaces'
+
+interface Challenge {
+  slug: string
+  title: string
+  banner: string
+  technology: string
+  difficulty: string
+}
+
+interface ChallengesProps {
+  challenges: Challenge[]
+}
+
+const levelOptions: Option[] = [
+  {
+    optionText: 'Hard',
+    value: 'hard'
+  },
+  {
+    optionText: 'Normal',
+    value: 'normal'
+  },
+  {
+    optionText: 'Easy',
+    value: 'easy'
+  }
+]
+
+const techOptions: Option[] = [
+  {
+    optionText: 'ReactJS',
+    value: 'reactjs'
+  },
+  {
+    optionText: 'NodeJS',
+    value: 'nodejs'
+  }
+]
+
+export default function Challenges({ challenges }: ChallengesProps) {
+  const router = useRouter()
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [showChallenges, setShowChallenges] = useState<Challenge[]>([])
+
+  const [level, setLevel] = useState('')
+  const [tech, setTech] = useState('')
+
+  function filterChallenges(isTech = false) {
+    if (!tech && !level) return challenges
+
+    return challenges.filter(challenge => {
+      const matchDifficulty =
+        challenge.difficulty.toLowerCase() === level.toLowerCase()
+      const matchTech =
+        challenge.technology.toLowerCase() === tech.toLowerCase()
+
+      if (isTech && matchTech) return challenge
+      if (!isTech && matchDifficulty) return challenge
+    })
+  }
 
   useEffect(() => {
     eva.replace()
+  }, [])
+
+  useEffect(() => {
+    setShowChallenges(filterChallenges(true))
+  }, [tech])
+
+  useEffect(() => {
+    setShowChallenges(filterChallenges())
+  }, [level])
+
+  useEffect(() => {
+    const newChallenges: Challenge[] = []
+    for (let index = (currentPage - 1) * 8; index < 8 * currentPage; index++) {
+      if (challenges[index]) {
+        newChallenges.push(challenges[index])
+      }
+    }
+    setShowChallenges(newChallenges)
+  }, [currentPage])
+
+  useEffect(() => {
+    const urlString = window.location.href
+    const url = new URL(urlString)
+    const paramLevel = url.searchParams.get('level')
+
+    if (paramLevel && levelOptions.find(op => op.value === paramLevel)) {
+      setLevel(paramLevel)
+    }
   }, [])
 
   return (
@@ -52,96 +140,94 @@ export default function Challenges() {
         </HStack>
       </Flex>
       <HStack spacing={4} pb={16}>
-        <Menu autoSelect={false}>
-          <MenuButton
-            as={Button}
-            variant="transparent"
-            w={32}
-            bgColor="gray.800"
-            textColor="white"
-            rightIcon={<i data-eva="arrow-down" data-eva-fill="#33303E"></i>}
-            _hover={{ bgColor: 'gray.700' }}
-            colorScheme="gray.700"
-            textAlign="left"
-          >
-            <Heading variant="18">Nível</Heading>
-          </MenuButton>
-          <MenuList bgColor="gray.800" minWidth={32} border={0}>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Easy</Heading>
-            </MenuItem>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Normal</Heading>
-            </MenuItem>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Hard</Heading>
-            </MenuItem>
-          </MenuList>
-        </Menu>
-        <Menu autoSelect={false}>
-          <MenuButton
-            as={Button}
-            variant="transparent"
-            w={44}
-            bgColor="gray.800"
-            textColor="white"
-            rightIcon={<i data-eva="arrow-down" data-eva-fill="#33303E"></i>}
-            _hover={{ bgColor: 'gray.700' }}
-            colorScheme="gray.700"
-            textAlign="left"
-          >
-            <Heading variant="18">Tecnologia</Heading>
-          </MenuButton>
-          <MenuList bgColor="gray.800" minWidth={44} border={0}>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">React</Heading>
-            </MenuItem>
-            <MenuItem _hover={{ bgColor: 'gray.700' }} closeOnSelect={true}>
-              <Heading variant="18">Node.JS</Heading>
-            </MenuItem>
-          </MenuList>
-        </Menu>
+        <Select
+          onSelect={option => setLevel(option.value)}
+          options={levelOptions}
+          placeholder="Nível"
+          selected={levelOptions.find(op => op.value === level)}
+        />
+        <Select
+          onSelect={option => setTech(option.value)}
+          options={techOptions}
+          placeholder="Tecnologia"
+          selected={techOptions.find(op => op.value === tech)}
+        />
       </HStack>
       <SimpleGrid columns={3} spacing={8} minChildWidth="340px">
-        {elements.map(element => {
+        {showChallenges.length <= 0 && (
+          <Heading variant="18" p={16} alignSelf="center">
+            Nenhum desafio ;-;
+          </Heading>
+        )}
+
+        {showChallenges.map(challenge => {
           return (
-            <Link
-              key={element}
-              as={`/rankings/challenge/${element}`}
-              href="/rankings/challenge/[element]"
+            <VStack
+              key={challenge.slug}
+              bgColor="gray.800"
+              borderRadius="11px"
+              display="flex"
+              alignItems="left"
+              p={6}
+              spacing={6}
+              maxW={389}
+              cursor="pointer"
+              onClick={() =>
+                router.push(`/rankings/challenge/${challenge.slug}`)
+              }
             >
-              <a>
-                <VStack
-                  bgColor="gray.800"
-                  borderRadius="11px"
-                  display="flex"
-                  alignItems="left"
-                  p={6}
-                  spacing={6}
-                >
-                  <Image
-                    src="https://via.placeholder.com/340"
-                    // borderRadius="20%" // add borderRadius before finishing
-                    h={40}
-                    w="full"
-                    objectFit="cover"
-                  />
-                  <HStack spacing={6}>
-                    <Box bgColor="purple.500" px={4} py={1} borderRadius="11px">
-                      <Heading variant="14">ReactJS</Heading>
-                    </Box>
-                    <Box bgColor="pink.500" px={4} py={1} borderRadius="11px">
-                      <Heading variant="14">Hard</Heading>
-                    </Box>
-                  </HStack>
-                  <Heading variant="24">Título desafio {element}</Heading>
-                </VStack>
-              </a>
-            </Link>
+              <Image
+                src={challenge.banner}
+                borderRadius="11"
+                h={40}
+                w="full"
+                objectFit="cover"
+              />
+              <HStack spacing={6}>
+                <Box bgColor="purple.500" px={4} py={1} borderRadius="11px">
+                  <Heading variant="14">{challenge.technology}</Heading>
+                </Box>
+                <Box bgColor="pink.500" px={4} py={1} borderRadius="11px">
+                  <Heading variant="14">{challenge.difficulty}</Heading>
+                </Box>
+              </HStack>
+              <Heading variant="24">{challenge.title}</Heading>
+            </VStack>
           )
         })}
       </SimpleGrid>
-      <Pagination totalCountOfRegisters={6} />
+      <Pagination
+        totalCountOfRegisters={challenges.length}
+        registersPerPage={8}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+      />
     </Flex>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient()
+  const response = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'challenge')],
+    {
+      pageSize: 100
+    }
+  )
+
+  const challenges = response.results.map(challenge => {
+    return {
+      slug: challenge.uid,
+      title: RichText.asText(challenge.data.title),
+      banner: challenge.data.banner.url,
+      technology: challenge.data.technology,
+      difficulty: challenge.data.difficulty
+    }
+  })
+
+  return {
+    props: {
+      challenges
+    }
+  }
 }
