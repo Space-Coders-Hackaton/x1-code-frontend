@@ -25,7 +25,7 @@ import { addUserCredentials } from '../store/modules/user/action'
 import Link from 'next/link'
 
 export function Header() {
-  const { name } = useSelector<Store, User>(state => state.user)
+  const { id, name } = useSelector<Store, User>(state => state.user)
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -40,10 +40,12 @@ export function Header() {
   }, [])
 
   useEffect(() => {
-    const user = localStorage.getItem('xonecode:user')
+    if (!id) {
+      const user = localStorage.getItem('xonecode:user')
 
-    if (user) {
-      dispatch(addUserCredentials(JSON.parse(user)))
+      if (user) {
+        dispatch(addUserCredentials(JSON.parse(user)))
+      }
     }
   }, [])
 
