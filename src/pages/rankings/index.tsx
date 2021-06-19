@@ -26,6 +26,9 @@ interface UserRank {
 export default function Rankings() {
   const { id } = useSelector<Store, User>(state => state.user)
 
+  const [totalPages, setTotalPages] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
+
   const [users, setUsers] = useState<UserRank[]>([])
   const [principalUsers, setPrincipalUsers] = useState<UserRank[]>([])
   const [listUsers, setListUsers] = useState<UserRank[]>([])
@@ -34,7 +37,9 @@ export default function Rankings() {
     const newPrincipalUser: UserRank[] = []
     const newListUser: UserRank[] = []
 
-    for (let index = 0; index <= 2; index++) {
+    const totalUsers = currentPage * 12
+
+    for (let index = 0; index <= totalUsers + 2; index++) {
       if (data[index]) {
         newPrincipalUser.push({
           ...data[index],
@@ -46,7 +51,7 @@ export default function Rankings() {
     if (data.length > 3) {
       const loggedUser = data.findIndex(rank => rank.user.id === id)
 
-      for (let index = 2; index <= 9; index++) {
+      for (let index = 2; index <= totalUsers + 9; index++) {
         if (data[index]) {
           newListUser.push({
             ...data[index],
@@ -72,6 +77,7 @@ export default function Rankings() {
       const { data } = await api.get('/ranking')
 
       setUsers(data)
+      setTotalPages(Math.ceil(data.length / 13))
       filterShowUsers(data)
     } catch (err) {
       // Toast
@@ -79,6 +85,10 @@ export default function Rankings() {
       console.log(err)
     }
   }
+
+  useEffect(() => {
+    filterShowUsers(users)
+  }, [currentPage])
 
   useEffect(() => {
     getUsers()
@@ -158,8 +168,11 @@ export default function Rankings() {
               )
             })}
           </VStack>
-          {users.length > listUsers.length && (
-            <Link alignSelf="center">
+          {currentPage + 1 < totalPages && (
+            <Link
+              alignSelf="center"
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
               <Heading
                 variant="24"
                 color="purple.500"
