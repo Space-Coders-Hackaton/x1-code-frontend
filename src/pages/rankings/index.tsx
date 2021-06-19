@@ -30,26 +30,26 @@ export default function Rankings() {
   const [principalUsers, setPrincipalUsers] = useState<UserRank[]>([])
   const [listUsers, setListUsers] = useState<UserRank[]>([])
 
-  function filterShowUsers() {
+  function filterShowUsers(data: UserRank[]) {
     const newPrincipalUser: UserRank[] = []
     const newListUser: UserRank[] = []
 
     for (let index = 0; index <= 2; index++) {
-      if (users[index]) {
+      if (data[index]) {
         newPrincipalUser.push({
-          ...users[index],
+          ...data[index],
           position: index + 1
         })
       }
     }
 
-    if (users.length > 3) {
-      const loggedUser = users.findIndex(rank => rank.user.id === id)
+    if (data.length > 3) {
+      const loggedUser = data.findIndex(rank => rank.user.id === id)
 
-      for (let index = 0; index <= 9; index++) {
-        if (users[index]) {
+      for (let index = 2; index <= 9; index++) {
+        if (data[index]) {
           newListUser.push({
-            ...users[index],
+            ...data[index],
             position: index + 1
           })
         }
@@ -57,7 +57,7 @@ export default function Rankings() {
 
       if (loggedUser !== -1 && loggedUser + 1 > newListUser.length) {
         newListUser.push({
-          ...users[loggedUser],
+          ...data[loggedUser],
           position: loggedUser + 1
         })
       }
@@ -72,7 +72,7 @@ export default function Rankings() {
       const { data } = await api.get('/ranking')
 
       setUsers(data)
-      filterShowUsers()
+      filterShowUsers(data)
     } catch (err) {
       // Toast
 
@@ -134,6 +134,17 @@ export default function Rankings() {
             )}
           </HStack>
           <VStack mt={12} spacing={6}>
+            <HStack w="full" alignItems="flex-start">
+              <HStack flex="1" spacing={30}>
+                <Text>POSIÇÃO</Text>
+                <Text>USUÁRIO</Text>
+              </HStack>
+
+              <HStack spacing={20} pr={14}>
+                <Text>DESAFIOS</Text>
+                <Text>PONTUAÇÃO</Text>
+              </HStack>
+            </HStack>
             {listUsers.map(rank => {
               return (
                 <ListItem
@@ -141,6 +152,7 @@ export default function Rankings() {
                   rank={rank.position}
                   name={rank.user.name}
                   score={rank.points}
+                  totalChallenges={rank.totalChallenges}
                   isUser={rank.user.id === id}
                 />
               )

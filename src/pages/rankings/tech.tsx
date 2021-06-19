@@ -51,7 +51,7 @@ export default function Rankings() {
     if (users.length > 3) {
       const loggedUser = users.findIndex(rank => rank.user.id === id)
 
-      for (let index = 0; index <= 9; index++) {
+      for (let index = 2; index <= 9; index++) {
         if (users[index]) {
           newListUser.push({
             ...users[index],
@@ -157,6 +157,17 @@ export default function Rankings() {
             )}
           </HStack>
           <VStack mt={12} spacing={6}>
+            <HStack w="full" alignItems="flex-start">
+              <HStack flex="1" spacing={30}>
+                <Text>POSIÇÃO</Text>
+                <Text>USUÁRIO</Text>
+              </HStack>
+
+              <HStack spacing={20} pr={14}>
+                <Text>DESAFIOS</Text>
+                <Text>PONTUAÇÃO</Text>
+              </HStack>
+            </HStack>
             {listUsers.map(rank => {
               return (
                 <ListItem
@@ -164,6 +175,7 @@ export default function Rankings() {
                   rank={rank.position}
                   name={rank.user.name}
                   score={rank.points}
+                  totalChallenges={rank.totalChallenges}
                   isUser={rank.user.id === id}
                 />
               )

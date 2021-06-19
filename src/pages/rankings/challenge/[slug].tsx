@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import { Store } from '../../../store'
 import { User } from '../../../store/modules/user/types'
 
-import { Flex, Heading, HStack, Link, VStack } from '@chakra-ui/layout'
+import { Flex, Heading, HStack, Link, Text, VStack } from '@chakra-ui/layout'
 import { PodiumItem } from '../../../components/Ranking/PodiumItem'
 import { ListItem } from '../../../components/Ranking/ListItem'
 
@@ -57,7 +57,7 @@ export default function Rankings({ challenge }: RankingsProps) {
     if (users.length > 3) {
       const loggedUser = users.findIndex(rank => rank.user.id === id)
 
-      for (let index = 0; index <= 9; index++) {
+      for (let index = 2; index <= 9; index++) {
         if (users[index]) {
           newListUser.push({
             ...users[index],
@@ -136,6 +136,17 @@ export default function Rankings({ challenge }: RankingsProps) {
             )}
           </HStack>
           <VStack mt={12} spacing={6}>
+            <HStack w="full" alignItems="flex-start">
+              <HStack flex="1" spacing={30}>
+                <Text>POSIÇÃO</Text>
+                <Text>USUÁRIO</Text>
+              </HStack>
+
+              <HStack spacing={20} pr={14}>
+                <Text>DESAFIOS</Text>
+                <Text>PONTUAÇÃO</Text>
+              </HStack>
+            </HStack>
             {listUsers.map(rank => {
               return (
                 <ListItem
@@ -143,6 +154,7 @@ export default function Rankings({ challenge }: RankingsProps) {
                   rank={rank.position}
                   name={rank.user.name}
                   score={rank.points}
+                  totalChallenges={rank.totalChallenges}
                   isUser={rank.user.id === id}
                 />
               )
