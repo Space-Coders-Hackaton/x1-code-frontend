@@ -1,6 +1,10 @@
 import * as eva from 'eva-icons'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+
+import { Store } from '../store'
+import { User } from '../store/modules/user/types'
 
 import {
   Button as ChakraButton,
@@ -20,6 +24,7 @@ import { menuRoutes } from '../utils/menuRoutes'
 import Link from 'next/link'
 
 export function Header() {
+  const { name } = useSelector<Store, User>(state => state.user)
   const router = useRouter()
 
   useEffect(() => {
@@ -124,22 +129,30 @@ export function Header() {
         })}
       </HStack>
 
-      <HStack spacing={6}>
-        <Link href="/signin">
-          <a>
-            <ChakraButton variant="transparent">
-              <Heading variant="18">Cadastrar</Heading>
-            </ChakraButton>
-          </a>
-        </Link>
-        <Link href="/login">
-          <a>
-            <ChakraButton variant="solid">
-              <Heading variant="18">Entrar</Heading>
-            </ChakraButton>
-          </a>
-        </Link>
-      </HStack>
+      {!name && (
+        <HStack spacing={6}>
+          <Link href="/signin">
+            <a>
+              <ChakraButton variant="transparent">
+                <Heading variant="18">Cadastrar</Heading>
+              </ChakraButton>
+            </a>
+          </Link>
+          <Link href="/login">
+            <a>
+              <ChakraButton variant="solid">
+                <Heading variant="18">Entrar</Heading>
+              </ChakraButton>
+            </a>
+          </Link>
+        </HStack>
+      )}
+
+      {name && (
+        <Heading alignSelf="center" variant="18">
+          Olá, {name}!
+        </Heading>
+      )}
     </Flex>
   )
 }

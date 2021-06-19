@@ -30,7 +30,7 @@ export default function signn() {
     if (!data.email || !data.password) return
 
     try {
-      await api.post('/user', data)
+      await api.post('/users', data)
 
       // Tratativa com o Toast
 
