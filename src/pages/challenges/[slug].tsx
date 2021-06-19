@@ -15,6 +15,8 @@ import {
   Heading
 } from '@chakra-ui/react'
 
+import { SendChallengeModal } from '../../components/SendChallengeModal'
+
 import { DescriptionContainer } from '../../styles/pages/Challenge'
 
 interface Challenge {
@@ -69,9 +71,8 @@ export default function Challenge({ challenge }: ChallengeProps) {
             <Button variant="solid" onClick={handleGoToTemplate}>
               <Heading variant="18">Template</Heading>
             </Button>
-            <Button variant="outline">
-              <Heading variant="18">Enviar solução</Heading>
-            </Button>
+
+            <SendChallengeModal />
           </HStack>
         </Flex>
 
