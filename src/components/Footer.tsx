@@ -1,13 +1,14 @@
+import Link from 'next/link'
 import React from 'react'
 
 import {
   Flex,
-  Link,
-  VStack,
-  Text,
   HStack,
+  Link as ChakraLink,
   List,
-  ListItem
+  ListItem,
+  Text,
+  VStack
 } from '@chakra-ui/react'
 
 export function Footer() {
@@ -25,21 +26,25 @@ export function Footer() {
         <Text variant="24">X1Code</Text>
         <Text variant="18">
           Projeto da equipe{' '}
-          <Link
-            color="#7B2CBF"
+          <ChakraLink
+            color="purple.500"
             isExternal
             href="https://github.com/Space-Coders-Hackaton"
           >
             Space Coders
-          </Link>{' '}
+          </ChakraLink>{' '}
           para a primeira edição do Code/Station Hackaton, realizado pela{' '}
-          <Link color="#7B2CBF" isExternal href="https://rocketseat.com.br/">
+          <ChakraLink
+            color="purple.500"
+            isExternal
+            href="https://rocketseat.com.br/"
+          >
             Rocketseat
-          </Link>{' '}
+          </ChakraLink>{' '}
           e{' '}
-          <Link color="#7B2CBF" isExternal href="https://shawee.io/">
+          <ChakraLink color="purple.500" isExternal href="https://shawee.io/">
             Shawee
-          </Link>{' '}
+          </ChakraLink>{' '}
           para os alunos e alunas do Ignite.
         </Text>
         <Text color="gray.500">
@@ -54,23 +59,31 @@ export function Footer() {
           </Text>
           <List spacing={2.5}>
             <ListItem>
-              <Link color="gray.500" variant="18">
-                Todos
+              <Link href="/challenges">
+                <ChakraLink color="gray.500" variant="18">
+                  Todos
+                </ChakraLink>
               </Link>
             </ListItem>
             <ListItem>
-              <Link color="gray.500" variant="18">
-                Nível Hard
+              <Link href="/challenges?level=hard">
+                <ChakraLink color="gray.500" variant="18">
+                  Nível Hard
+                </ChakraLink>
               </Link>
             </ListItem>
             <ListItem>
-              <Link color="gray.500" variant="18">
-                Nível Normal
+              <Link href="/challenges?level=normal">
+                <ChakraLink color="gray.500" variant="18">
+                  Nível Normal
+                </ChakraLink>
               </Link>
             </ListItem>
             <ListItem>
-              <Link color="gray.500" variant="18">
-                Nível Easy
+              <Link href="/challenges?level=easy">
+                <ChakraLink color="gray.500" variant="18">
+                  Nível Easy
+                </ChakraLink>
               </Link>
             </ListItem>
           </List>
@@ -81,18 +94,24 @@ export function Footer() {
           </Text>
           <List spacing={2.5}>
             <ListItem>
-              <Link color="gray.500" variant="18">
-                Geral
+              <Link href="/rankings">
+                <ChakraLink color="gray.500" variant="18">
+                  Geral
+                </ChakraLink>
               </Link>
             </ListItem>
             <ListItem>
-              <Link color="gray.500" variant="18">
-                Desafio
+              <Link href="/rankings/challenge">
+                <ChakraLink color="gray.500" variant="18">
+                  Desafio
+                </ChakraLink>
               </Link>
             </ListItem>
             <ListItem>
-              <Link color="gray.500" variant="18">
-                Tecnologia
+              <Link href="/rankings/tech">
+                <ChakraLink color="gray.500" variant="18">
+                  Tecnologia
+                </ChakraLink>
               </Link>
             </ListItem>
           </List>
@@ -103,44 +122,44 @@ export function Footer() {
           </Text>
           <List spacing={2.5}>
             <ListItem>
-              <Link
+              <ChakraLink
                 color="gray.500"
                 variant="18"
                 isExternal
                 href="https://github.com/allyfx"
               >
                 Alícia Foureaux
-              </Link>
+              </ChakraLink>
             </ListItem>
             <ListItem>
-              <Link
+              <ChakraLink
                 color="gray.500"
                 variant="18"
                 isExternal
                 href="https://github.com/carlosmfreitas2409"
               >
                 Carlos Eduardo
-              </Link>
+              </ChakraLink>
             </ListItem>
             <ListItem>
-              <Link
+              <ChakraLink
                 color="gray.500"
                 variant="18"
                 isExternal
                 href="https://github.com/Gilvan-Araujo"
               >
                 Gilvan Araújo
-              </Link>
+              </ChakraLink>
             </ListItem>
             <ListItem>
-              <Link
+              <ChakraLink
                 color="gray.500"
                 variant="18"
                 isExternal
                 href="https://github.com/ManoelDev"
               >
                 Manoel Neto
-              </Link>
+              </ChakraLink>
             </ListItem>
           </List>
         </Flex>
