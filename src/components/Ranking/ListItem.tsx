@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsDot } from 'react-icons/bs'
 
-import { Box, Center, Flex, Heading, HStack, Image } from '@chakra-ui/react'
+import { Center, Flex, Heading, Image } from '@chakra-ui/react'
 
 type ListItemProps = {
   rank: number
