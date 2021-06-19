@@ -140,7 +140,9 @@ export default function Challenges({ challenges }: ChallengesProps) {
       </HStack>
       <SimpleGrid columns={3} spacing={8} minChildWidth="340px">
         {showChallenges.length <= 0 && (
-          <Heading variant="18">Nenhum desafio</Heading>
+          <Heading variant="18" p={16} alignSelf="center">
+            Nenhum desafio ;-;
+          </Heading>
         )}
 
         {showChallenges.map(challenge => {
