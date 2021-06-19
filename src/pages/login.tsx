@@ -36,12 +36,14 @@ export default function login() {
 
       const { user, token } = response.data
 
-      dispatch(
-        addUserCredentials({
-          ...user,
-          token
-        })
-      )
+      const loggedUser = {
+        ...user,
+        token
+      }
+
+      dispatch(addUserCredentials(loggedUser))
+
+      localStorage.setItem('xonecode:user', JSON.stringify(loggedUser))
 
       // Tratativa com o Toast
 
