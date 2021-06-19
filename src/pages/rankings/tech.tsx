@@ -15,6 +15,7 @@ import { Select } from '../../components/Select'
 import * as eva from 'eva-icons'
 
 import { api } from '../../services/api'
+import { useToast } from '../../hooks/useToast'
 
 interface UserRank {
   points: number
@@ -28,6 +29,7 @@ interface UserRank {
 
 export default function Rankings() {
   const { id } = useSelector<Store, User>(state => state.user)
+  const { sendToast } = useToast()
 
   const [totalPages, setTotalPages] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
@@ -85,9 +87,13 @@ export default function Rankings() {
       setTotalPages(Math.ceil(data.length / 13))
       filterShowUsers(data)
     } catch (err) {
-      // Toast
-
-      console.log(err)
+      err.response.data.errors.map(error => {
+        sendToast({
+          title: 'Ocorreu um erro',
+          description: error.errors[0],
+          status: 'error'
+        })
+      })
     }
   }
 
