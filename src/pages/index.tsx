@@ -1,7 +1,7 @@
 import * as eva from 'eva-icons'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaNodeJs, FaReact } from 'react-icons/fa'
 
 import {
@@ -20,16 +20,43 @@ import {
 
 import Mouse from '../../public/mouse.svg'
 
+import { api } from '../services/api'
+
+interface Stats {
+  users: number
+  corrections: number
+  challenges: number
+}
+
 export default function Home() {
   const router = useRouter()
-
-  useEffect(() => {
-    eva.replace()
-  }, [])
+  const [stats, setStats] = useState({
+    users: 0,
+    corrections: 0,
+    challenges: 0
+  })
 
   function handleNavigateToChallenges() {
     router.push('/challenges')
   }
+
+  async function getData() {
+    try {
+      const { data } = await api.get('/stats')
+
+      setStats(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  useEffect(() => {
+    eva.replace()
+  }, [])
 
   return (
     <>
@@ -96,14 +123,14 @@ export default function Home() {
           spacing={10}
         >
           <VStack spacing={2}>
-            <Heading variant="72">70</Heading>
+            <Heading variant="72">{stats.challenges}</Heading>
             <Heading variant="20" as="span">
               DESAFIOS
             </Heading>
           </VStack>
           <Divider orientation="vertical" />
           <VStack spacing={2}>
-            <Heading variant="72">+100</Heading>
+            <Heading variant="72">{stats.users}</Heading>
             <Heading variant="20" as="span">
               USUÁRIOS
             </Heading>
@@ -117,7 +144,7 @@ export default function Home() {
           </VStack>
           <Divider orientation="vertical" />
           <VStack spacing={2}>
-            <Heading variant="72">+1000</Heading>
+            <Heading variant="72">{stats.corrections}</Heading>
             <Heading variant="20" as="span">
               ENVIADOS
             </Heading>
