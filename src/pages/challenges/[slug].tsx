@@ -77,7 +77,7 @@ export default function Challenge({ challenge }: ChallengeProps) {
               <Heading variant="18">Template</Heading>
             </Button>
 
-            <SendChallengeModal />
+            <SendChallengeModal challenge={challenge} />
           </HStack>
         </Flex>
 

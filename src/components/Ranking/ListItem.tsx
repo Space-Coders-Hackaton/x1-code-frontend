@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Center, Flex, Heading, HStack, Image } from '@chakra-ui/react'
+import { Center, Flex, Heading, HStack, Avatar } from '@chakra-ui/react'
 
 type ListItemProps = {
   rank: number
@@ -41,8 +41,12 @@ export function ListItem({
         borderTopRightRadius="11px"
         borderBottomRightRadius="11px"
       >
-        <Image
-          src="https://bit.ly/sage-adebayo"
+        <Avatar
+          color="white"
+          bg="gray.900"
+          size="xl"
+          src=""
+          name={name}
           w="50px"
           h="50px"
           borderRadius="full"

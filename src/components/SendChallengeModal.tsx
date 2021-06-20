@@ -1,4 +1,8 @@
 import React, { useRef } from 'react'
+import { useSelector } from 'react-redux'
+
+import { Store } from '../store'
+import { User } from '../store/modules/user/types'
 
 import {
   Button,
@@ -14,10 +18,27 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 
-// import { api } from '../services/api'
+import { api } from '../services/api'
+import { useToast } from '../hooks/useToast'
 
-export function SendChallengeModal() {
+interface Challenge {
+  slug: string
+  title: string
+  banner: string
+  description: string
+  templateUrl: string
+  technology: string
+  difficulty: string
+}
+
+interface SendChallengeModalProps {
+  challenge: Challenge
+}
+
+export function SendChallengeModal({ challenge }: SendChallengeModalProps) {
+  const { id, token } = useSelector<Store, User>(state => state.user)
   const inputRef = useRef<HTMLInputElement>(null)
+  const { sendToast } = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   async function handleSubmit() {
@@ -26,17 +47,43 @@ export function SendChallengeModal() {
     if (!repositoryUrl) return
 
     try {
-      // Toast
-    } catch (err) {
-      // Toast
+      await api.post(
+        '/corrections/send',
+        {
+          user_id: id,
+          challenge_slug: challenge.slug,
+          difficulty: challenge.difficulty.toLowerCase(),
+          technology: challenge.technology.toLowerCase(),
+          repository_url: repositoryUrl,
+          template_url: challenge.templateUrl
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        }
+      )
 
-      console.log(err)
+      sendToast({
+        title: 'Desafio enviado com sucesso!',
+        description:
+          'Fique atento(a) ao seu email. Qualquer atualização enviaremos por lá!',
+        status: 'success'
+      })
+
+      onClose()
+    } catch (err) {
+      sendToast({
+        title: 'Ocorreu um erro!',
+        description: err.response.data.message,
+        status: 'error'
+      })
     }
   }
 
   return (
     <>
-      <Button variant="outline" onClick={onOpen}>
+      <Button variant="outline" onClick={onOpen} disabled={!id}>
         <Heading variant="18">Enviar solução</Heading>
       </Button>
 
