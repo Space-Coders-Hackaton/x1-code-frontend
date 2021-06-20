@@ -1,4 +1,4 @@
-import { Center, Button, Heading, Text, VStack } from '@chakra-ui/react'
+import { Center, Button, Heading, Text, VStack, Box } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
@@ -26,6 +26,15 @@ export default function signn() {
       ...prevState,
       [input]: e.target.value
     }))
+  }
+
+  function sendGithubWarning() {
+    sendToast({
+      title: 'Sem funcionalidade',
+      description:
+        'Estamos trabalhando para implementar essa funcionalidade, pode aguardar em uma próxima atualização',
+      status: 'info'
+    })
   }
 
   async function handleSubmit() {
@@ -85,13 +94,16 @@ export default function signn() {
           <Button onClick={handleSubmit} variant="solid" w={96}>
             <Heading variant="18">Cadastrar-se</Heading>
           </Button>
-          <Button
-            variant="outline"
-            minW={96}
-            rightIcon={<i data-eva="github" data-eva-fill="#8D34D9" />}
-          >
-            <Heading variant="18">Cadastrar com Github</Heading>
-          </Button>
+          <Box onClick={sendGithubWarning}>
+            <Button
+              variant="outline"
+              minW={96}
+              rightIcon={<i data-eva="github" data-eva-fill="#8D34D9" />}
+              disabled
+            >
+              <Heading variant="18">Cadastrar com Github</Heading>
+            </Button>
+          </Box>
         </VStack>
       </VStack>
     </Center>
