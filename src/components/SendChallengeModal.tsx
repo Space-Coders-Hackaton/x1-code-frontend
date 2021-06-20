@@ -5,6 +5,7 @@ import { Store } from '../store'
 import { User } from '../store/modules/user/types'
 
 import {
+  Box,
   Button,
   Input,
   Heading,
@@ -31,15 +32,34 @@ interface Challenge {
   difficulty: string
 }
 
-interface SendChallengeModalProps {
-  challenge: Challenge
+interface CorrectionStats {
+  pending: boolean
+  daysTimeout: number | null
 }
 
-export function SendChallengeModal({ challenge }: SendChallengeModalProps) {
+interface SendChallengeModalProps {
+  challenge: Challenge
+  correctionStats: CorrectionStats
+}
+
+export function SendChallengeModal({
+  challenge,
+  correctionStats
+}: SendChallengeModalProps) {
   const { id, token } = useSelector<Store, User>(state => state.user)
   const inputRef = useRef<HTMLInputElement>(null)
   const { sendToast } = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  function handleClickDisabled() {
+    if (correctionStats.pending) {
+      sendToast({
+        title: 'Desafio já enviado antes',
+        description: `Você já enviou este desafio antes, faltam ${correctionStats.daysTimeout} dias para que possa enviar novamente`,
+        status: 'info'
+      })
+    }
+  }
 
   async function handleSubmit() {
     const repositoryUrl = inputRef.current.value
@@ -83,9 +103,15 @@ export function SendChallengeModal({ challenge }: SendChallengeModalProps) {
 
   return (
     <>
-      <Button variant="outline" onClick={onOpen} disabled={!id}>
-        <Heading variant="18">Enviar solução</Heading>
-      </Button>
+      <Box onClick={handleClickDisabled}>
+        <Button
+          variant="outline"
+          onClick={onOpen}
+          disabled={!id || correctionStats.pending}
+        >
+          <Heading variant="18">Enviar solução</Heading>
+        </Button>
+      </Box>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
