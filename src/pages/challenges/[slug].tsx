@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { RichText } from 'prismic-dom'
+import { useSelector } from 'react-redux'
+
+import { Store } from '../../store'
+import { User } from '../../store/modules/user/types'
 
 import { getPrismicClient } from '../../services/prismic'
 
@@ -15,8 +19,12 @@ import {
   Heading
 } from '@chakra-ui/react'
 
+import { SendChallengeModal } from '../../components/SendChallengeModal'
+import { ResendChallengeModal } from '../../components/ResendChallengeModal'
+
 import { DescriptionContainer } from '../../styles/pages/Challenge'
 import { GoBack } from '../../components/GoBack'
+import { api } from '../../services/api'
 
 interface Challenge {
   slug: string
@@ -32,10 +40,49 @@ interface ChallengeProps {
   challenge: Challenge
 }
 
+interface CorrectionStats {
+  pending: boolean
+  daysTimeout: number | null
+}
+
 export default function Challenge({ challenge }: ChallengeProps) {
+  const { token } = useSelector<Store, User>(state => state.user)
+  const [isResend, setIsResend] = useState(false)
+  const [correctionStats, setCorrectionStats] = useState<CorrectionStats>({
+    daysTimeout: null,
+    pending: false
+  })
+
   function handleGoToTemplate() {
     window.open(challenge.templateUrl, '_blank')
   }
+
+  async function getChallengeStats() {
+    if (!token) return
+
+    try {
+      const { data } = await api.get(`/corrections/${challenge.slug}`, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+
+      if (data.correction) {
+        setIsResend(true)
+      }
+
+      setCorrectionStats({
+        ...data,
+        daysTimeout: 7 - data.daysTimeout
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    getChallengeStats()
+  }, [token])
 
   return (
     <>
@@ -74,9 +121,18 @@ export default function Challenge({ challenge }: ChallengeProps) {
             <Button variant="solid" onClick={handleGoToTemplate}>
               <Heading variant="18">Template</Heading>
             </Button>
-            <Button variant="outline">
-              <Heading variant="18">Enviar solução</Heading>
-            </Button>
+
+            {isResend ? (
+              <ResendChallengeModal
+                correctionStats={correctionStats}
+                challenge={challenge}
+              />
+            ) : (
+              <SendChallengeModal
+                correctionStats={correctionStats}
+                challenge={challenge}
+              />
+            )}
           </HStack>
         </Flex>
 

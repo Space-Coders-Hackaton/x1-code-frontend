@@ -1,4 +1,4 @@
-import { Image } from '@chakra-ui/image'
+import { Avatar, Image } from '@chakra-ui/react'
 import { Box, Center, Flex, Heading } from '@chakra-ui/layout'
 import React from 'react'
 
@@ -9,19 +9,22 @@ type PodiumItemProps = {
   score: number
 }
 
-export function PodiumItem({ image, place, name, score }: PodiumItemProps) {
+export function PodiumItem({ place, name, score }: PodiumItemProps) {
   let podiumImage
 
   if (place === 1) {
     podiumImage = (
       <>
-        <Box borderWidth="5px" borderColor="#FF9602" borderRadius="full">
-          <Image
-            borderRadius="full"
+        <Box>
+          <Avatar
             boxSize="232px"
-            objectFit="cover"
-            src="https://bit.ly/sage-adebayo"
-            alt="Segun Adebayo"
+            borderColor="#FF9602"
+            borderWidth="5px"
+            color="white"
+            bg="gray.900"
+            size="xl"
+            src=""
+            name={name}
           />
         </Box>
         <Center
@@ -31,6 +34,7 @@ export function PodiumItem({ image, place, name, score }: PodiumItemProps) {
           borderRadius="full"
           mt="-24px"
           mb={4}
+          zIndex={9}
         >
           <Heading variant="28">{place}</Heading>
         </Center>
@@ -41,13 +45,16 @@ export function PodiumItem({ image, place, name, score }: PodiumItemProps) {
   } else if (place === 2) {
     podiumImage = (
       <>
-        <Box borderWidth="5px" borderColor="#50E9FE" borderRadius="full">
-          <Image
-            borderRadius="full"
+        <Box>
+          <Avatar
             boxSize="232px"
-            objectFit="cover"
-            src="https://bit.ly/sage-adebayo"
-            alt="Segun Adebayo"
+            borderColor="#50E9FE"
+            borderWidth="5px"
+            color="white"
+            bg="gray.900"
+            size="xl"
+            src=""
+            name={name}
           />
         </Box>
         <Center
@@ -57,6 +64,7 @@ export function PodiumItem({ image, place, name, score }: PodiumItemProps) {
           borderRadius="full"
           mt="-24px"
           mb={4}
+          zIndex={9}
         >
           <Heading variant="20">{place}</Heading>
         </Center>
@@ -67,13 +75,16 @@ export function PodiumItem({ image, place, name, score }: PodiumItemProps) {
   } else {
     podiumImage = (
       <>
-        <Box borderWidth="5px" borderColor="#FF9EFA" borderRadius="full">
-          <Image
-            borderRadius="full"
+        <Box>
+          <Avatar
             boxSize="232px"
-            objectFit="cover"
-            src="https://bit.ly/sage-adebayo"
-            alt="Segun Adebayo"
+            borderWidth="5px"
+            borderColor="#FF9EFA"
+            color="white"
+            bg="gray.900"
+            size="xl"
+            src=""
+            name={name}
           />
         </Box>
         <Center
@@ -83,6 +94,7 @@ export function PodiumItem({ image, place, name, score }: PodiumItemProps) {
           borderRadius="full"
           mt="-24px"
           mb={4}
+          zIndex={9}
         >
           <Heading variant="20">{place}</Heading>
         </Center>
