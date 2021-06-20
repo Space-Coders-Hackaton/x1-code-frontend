@@ -80,6 +80,8 @@ export default function Rankings() {
   }
 
   async function getUsers() {
+    if (!tech) return
+
     try {
       const { data } = await api.get(`/ranking/technology/${tech}`)
 
