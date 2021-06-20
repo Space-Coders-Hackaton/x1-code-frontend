@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux'
-import { Button, Center, Heading, Text, VStack } from '@chakra-ui/react'
+import { Button, Center, Heading, Text, VStack, Box } from '@chakra-ui/react'
 import Head from 'next/head'
 import * as eva from 'eva-icons'
 
@@ -28,6 +28,15 @@ export default function login() {
       ...prevState,
       [input]: e.target.value
     }))
+  }
+
+  function sendGithubWarning() {
+    sendToast({
+      title: 'Sem funcionalidade',
+      description:
+        'Estamos trabalhando para implementar essa funcionalidade, pode aguardar em uma próxima atualização',
+      status: 'info'
+    })
   }
 
   async function handleSubmit() {
@@ -91,13 +100,16 @@ export default function login() {
           <Button variant="solid" w={96} onClick={handleSubmit}>
             <Heading variant="18">Fazer login</Heading>
           </Button>
-          <Button
-            variant="outline"
-            minW={96}
-            rightIcon={<i data-eva="github" data-eva-fill="#8D34D9" />}
-          >
-            <Heading variant="18">Entrar pelo Github</Heading>
-          </Button>
+          <Box onClick={sendGithubWarning}>
+            <Button
+              variant="outline"
+              minW={96}
+              rightIcon={<i data-eva="github" data-eva-fill="#8D34D9" />}
+              disabled
+            >
+              <Heading variant="18">Entrar pelo Github</Heading>
+            </Button>
+          </Box>
         </VStack>
       </VStack>
     </Center>
