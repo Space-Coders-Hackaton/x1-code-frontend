@@ -3,6 +3,7 @@ import React from 'react'
 
 import { ChakraProvider } from '@chakra-ui/react'
 import { Provider as ReduxProvider } from 'react-redux'
+import { ToastProvider } from '../hooks/useToast'
 
 import store from '../store'
 
@@ -16,10 +17,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <ReduxProvider store={store}>
-        <Header />
-        <Component {...pageProps} />
-        <GlobalStyle />
-        <Footer />
+        <ToastProvider>
+          <Header />
+          <Component {...pageProps} />
+          <GlobalStyle />
+          <Footer />
+        </ToastProvider>
       </ReduxProvider>
     </ChakraProvider>
   )

@@ -1,17 +1,23 @@
 import React from 'react'
-import { BsDot } from 'react-icons/bs'
 
-import { Box, Center, Flex, Heading, HStack, Image } from '@chakra-ui/react'
+import { Center, Flex, Heading, HStack, Image } from '@chakra-ui/react'
 
 type ListItemProps = {
   rank: number
   image?: string
   name?: string
+  totalChallenges?: number
   score?: number
   isUser?: boolean
 }
 
-export function ListItem({ rank, name, score, isUser }: ListItemProps) {
+export function ListItem({
+  rank,
+  name,
+  score,
+  totalChallenges,
+  isUser
+}: ListItemProps) {
   let bg
   isUser ? (bg = 'purple.500') : (bg = '#33303E')
 
@@ -43,8 +49,25 @@ export function ListItem({ rank, name, score, isUser }: ListItemProps) {
           mr={4}
         />
         <Heading variant="20">{name}</Heading>
-        <BsDot />
-        <Heading variant="20">{score}</Heading>
+
+        <HStack ml="auto" spacing={20} pr={14}>
+          <HStack>
+            <Heading variant="14" fontSize="16px" color="purple.300">
+              {totalChallenges}
+            </Heading>{' '}
+            <Heading variant="14" fontSize="16px">
+              completados
+            </Heading>
+          </HStack>
+          <HStack>
+            <Heading variant="14" fontSize="16px" color="purple.300">
+              {score}
+            </Heading>{' '}
+            <Heading variant="14" fontSize="16px">
+              pt
+            </Heading>
+          </HStack>
+        </HStack>
       </Flex>
     </Flex>
   )

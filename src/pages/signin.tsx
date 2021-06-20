@@ -7,9 +7,11 @@ import * as eva from 'eva-icons'
 import { Input } from '../components/Input'
 
 import { api } from '../services/api'
+import { useToast } from '../hooks/useToast'
 
 export default function signn() {
   const router = useRouter()
+  const { sendToast } = useToast()
 
   const [data, setData] = useState({
     name: '',
@@ -32,13 +34,20 @@ export default function signn() {
     try {
       await api.post('/users', data)
 
-      // Tratativa com o Toast
+      sendToast({
+        title: 'Usuário cadastrado com sucesso!',
+        status: 'success'
+      })
 
       router.push('/login')
     } catch (err) {
-      // Tratativa com o Toast
-
-      console.log(err)
+      err.response.data.errors.map(error => {
+        sendToast({
+          title: 'Ocorreu um erro',
+          description: error.errors[0],
+          status: 'error'
+        })
+      })
     }
   }
 

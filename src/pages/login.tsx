@@ -9,10 +9,12 @@ import { Input } from '../components/Input'
 
 import { addUserCredentials } from '../store/modules/user/action'
 import { api } from '../services/api'
+import { useToast } from '../hooks/useToast'
 
 export default function login() {
   const dispatch = useDispatch()
   const router = useRouter()
+  const { sendToast } = useToast()
 
   const [data, setData] = useState({
     email: '',
@@ -33,23 +35,26 @@ export default function login() {
 
     try {
       const response = await api.post('/sessions', data)
-
       const { user, token } = response.data
-
-      dispatch(
-        addUserCredentials({
-          ...user,
-          token
-        })
-      )
-
-      // Tratativa com o Toast
-
+      const loggedUser = {
+        ...user,
+        token
+      }
+      dispatch(addUserCredentials(loggedUser))
+      localStorage.setItem('xonecode:user', JSON.stringify(loggedUser))
+      sendToast({
+        title: 'Login feito com sucesso!',
+        status: 'success'
+      })
       router.push('/challenges')
     } catch (err) {
-      // Tratativa com o Toast
-
-      console.log(err)
+      err.response.data.errors.map(error => {
+        sendToast({
+          title: 'Ocorreu um erro',
+          description: error.errors[0],
+          status: 'error'
+        })
+      })
     }
   }
 

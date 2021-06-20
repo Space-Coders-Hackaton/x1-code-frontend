@@ -1,7 +1,7 @@
 import * as eva from 'eva-icons'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { Store } from '../store'
 import { User } from '../store/modules/user/types'
@@ -21,21 +21,33 @@ import { SubMenuButton } from './Menu/SubMenuButton'
 import { MenuItem } from './Menu/MenuItem'
 
 import { menuRoutes } from '../utils/menuRoutes'
+import { addUserCredentials } from '../store/modules/user/action'
 import Link from 'next/link'
 
 export function Header() {
-  const { name } = useSelector<Store, User>(state => state.user)
+  const { id, name } = useSelector<Store, User>(state => state.user)
   const router = useRouter()
-
-  useEffect(() => {
-    eva.replace()
-  }, [])
+  const dispatch = useDispatch()
 
   function handleNavigate(to: string) {
     if (to) {
       router.push(to)
     }
   }
+
+  useEffect(() => {
+    eva.replace()
+  }, [])
+
+  useEffect(() => {
+    if (!id) {
+      const user = localStorage.getItem('xonecode:user')
+
+      if (user) {
+        dispatch(addUserCredentials(JSON.parse(user)))
+      }
+    }
+  }, [])
 
   return (
     <Flex as="header" py={8} px={28} justify="space-between">
