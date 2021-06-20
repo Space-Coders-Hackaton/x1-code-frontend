@@ -16,6 +16,7 @@ import { ListItem } from '../../../components/Ranking/ListItem'
 
 import { api } from '../../../services/api'
 import { GoBack } from '../../../components/GoBack'
+import { useToast } from '../../../hooks/useToast'
 
 interface UserRank {
   points: number
@@ -32,6 +33,7 @@ interface RankingsProps {
 }
 
 export default function Rankings({ challenge }: RankingsProps) {
+  const { sendToast } = useToast()
   const router = useRouter()
   const { slug } = router.query
 
@@ -91,9 +93,13 @@ export default function Rankings({ challenge }: RankingsProps) {
       setTotalPages(Math.ceil(data.length / 13))
       filterShowUsers(data)
     } catch (err) {
-      // Toast
-
-      console.log(err)
+      err.response.data.errors.map(error => {
+        sendToast({
+          title: 'Ocorreu um erro',
+          description: error.errors[0],
+          status: 'error'
+        })
+      })
     }
   }
 
